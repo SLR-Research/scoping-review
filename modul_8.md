@@ -101,11 +101,9 @@ Generate descriptive summary dari charting.xlsx + visualisasi.
 
    Generate via Python (matplotlib/seaborn). Aspect 16:9 untuk slide-friendly.
 
-   Contoh kode export dual-format:
-   ```python
-   plt.savefig('outputs/figures/fig2_temporal.svg', bbox_inches='tight')
-   plt.savefig('outputs/figures/fig2_temporal.png', dpi=300, bbox_inches='tight')
-   ```
+   Contoh kode export dual-format (Python matplotlib):
+       plt.savefig('outputs/figures/fig2_temporal.svg', bbox_inches='tight')
+       plt.savefig('outputs/figures/fig2_temporal.png', dpi=300, bbox_inches='tight')
 
 3. GEOGRAPHIC HONESTY CHECK:
    Jika ada region dominan (>50%), generate disclosure paragraph:
@@ -372,15 +370,22 @@ siap di-feed ke writing prompts.
 
 **4. Cowork tidak bisa generate visualisasi langsung**
 - Minta output script Python (.py) atau R (.R) ke outputs/figures/
-- Pastikan script include dual-export SVG + PNG:
-  ```python
-  plt.savefig('fig.svg', bbox_inches='tight')
-  plt.savefig('fig.png', dpi=300, bbox_inches='tight')
-  ```
-  ```r
-  ggsave('fig.svg', plot, width=10, height=6)
-  ggsave('fig.png', plot, width=10, height=6, dpi=300)
-  ```
+- Pastikan script include dual-export SVG + PNG.
+
+Contoh Python (matplotlib):
+
+```python
+plt.savefig('fig.svg', bbox_inches='tight')
+plt.savefig('fig.png', dpi=300, bbox_inches='tight')
+```
+
+Contoh R (ggplot2):
+
+```r
+ggsave('fig.svg', plot, width=10, height=6)
+ggsave('fig.png', plot, width=10, height=6, dpi=300)
+```
+
 - Peserta jalankan sendiri
 - Atau gunakan Excel chart (less professional — Excel tidak support SVG native)
 
