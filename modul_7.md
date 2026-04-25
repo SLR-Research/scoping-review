@@ -26,48 +26,42 @@ ScR_Project/                       ← folder yang sama dari Modul 6
 
 > **📁 Catatan:** Jika di Modul 6 Anda pakai nama folder selain `ScR_Project/`, gunakan nama yang sama di Modul 7 — konsistensi lintas modul wajib.
 
-### **0.2 Setup Tambahan via Cowork:**
+### **0.2 Setup Tambahan + Brief Awal (Single Prompt Cowork):**
 
 ```
-Lanjutan dari Modul 6. Buat 2 file baru di folder kerja saya
-[ScR_Project/ atau nama folder Anda]:
+Lanjut Modul 7 (Data Charting) di folder kerja saya [ScR_Project/ atau nama
+folder Anda dari Modul 6]. Eksekusi dua hal sekaligus:
+
+=== BAGIAN A: SETUP FILE TAMBAHAN ===
 
 1. CREATE charting_form.md (kosong, akan diisi di L1)
 
 2. CREATE charting.xlsx dengan struktur:
-
-   Sheet "Charting":
-   - Header meta (Row 1-5): Framework charting + canonical PCC + tanggal
-   - Kolom data mulai Row 6 — kolom akan ditentukan setelah L1
-
-   Sheet "Pilot_Log":
-   - Tracking iterasi revisi form (kolom: Iterasi, Tanggal, Perubahan, Alasan)
-
-   Sheet "Summary":
-   - Auto-calculated: total sources charted, NR rate per kolom, peer/grey breakdown
+   - Sheet "Charting": Row 1-5 header meta (Framework + canonical PCC + tanggal),
+     kolom data mulai Row 6 (kolom ditentukan setelah L1)
+   - Sheet "Pilot_Log": tracking iterasi revisi form
+     (Iterasi | Tanggal | Perubahan | Alasan)
+   - Sheet "Summary": auto-calculated (total sources, NR rate, peer/grey breakdown)
 
 3. Pre-populate Sheet "Charting" dengan baris untuk setiap source dari
-   screening.xlsx yang Final_Decision=INCLUDE. Isi kolom meta dasar (ID,
-   Source_Type, Author/Org, Year, DOI/URL, Document_Type) dari screening.xlsx.
+   screening.xlsx yang Final_Decision=INCLUDE. Isi kolom meta dasar
+   (ID, Source_Type, Author/Org, Year, DOI/URL, Document_Type).
 
-VERIFY hasil + konfirmasi total INCLUDED rows yang sudah pre-populated.
-No preamble.
-```
+=== BAGIAN B: BRIEF AWAL CONTEXT ===
 
-### **0.3 Brief Awal Modul 7:**
+Setelah setup, simpan context untuk seluruh sesi Modul 7:
 
-```
-Lanjut Modul 7 (Data Charting) di folder [nama folder Anda].
-
-Konteks:
-- Target charting: sources dengan Final_Decision=INCLUDE di screening.xlsx
+- Target charting: sources Final_Decision=INCLUDE di screening.xlsx
 - PDFs di pdfs/
 - Standar: JBI Manual Ch.11 — ini CHARTING (iteratif), bukan extraction
 - Quality Assessment: opsional dan non-exclusionary
 - TIDAK ADA meta-analysis di ScR
+- Output format default: tabel/bullet ringkas, no preamble
+- Bahasa: Indonesia
 
-Output kamu: tabel/bullet ringkas, no preamble, no narasi panjang.
-Bahasa Indonesia.
+VERIFY: file baru tersimpan + total INCLUDED rows pre-populated + context siap
+untuk eksekusi L1-L4.
+No preamble.
 ```
 
 ---

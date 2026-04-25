@@ -43,13 +43,15 @@ ScR_Project/                       ← folder yang sama dari Modul 6-8
 
 > **📁 Catatan:** Jika nama folder kerja Anda bukan `ScR_Project/`, gunakan nama yang sama dari Modul 6-8.
 
-### **0.2 Setup Tambahan via Cowork:**
+### **0.2 Setup + Brief Awal + Aturan Global (Single Prompt Cowork):**
 
 ```
-Lanjut Modul 9 (Manuscript Writing) di folder kerja [nama folder].
+Lanjut Modul 9 (Manuscript Writing) di folder kerja [nama folder dari M8].
+Eksekusi tiga hal sekaligus:
 
-CREATE struktur output:
-1. CREATE outputs/manuscript/ (kosong, akan diisi per langkah)
+=== BAGIAN A: SETUP STRUKTUR OUTPUT ===
+
+1. CREATE outputs/manuscript/ (kosong, akan diisi per langkah L1-L9)
 2. VERIFY input artifacts dari M2-8 tersedia:
    - outputs/interpretation_package.md (dari M8 — wajib)
    - outputs/gap_inventory.md
@@ -59,24 +61,18 @@ CREATE struktur output:
    - charting.xlsx
    - screening.xlsx (untuk PRISMA-ScR flow numbers)
 
-VERIFY semua tersedia + konfirmasi siap mulai writing.
-No preamble.
-```
+=== BAGIAN B: BRIEF AWAL CONTEXT ===
 
-### **0.3 Brief Awal + Aturan Global Modul 9:**
-
-```
-Lanjut Modul 9 (Manuscript Writing) di folder [nama folder Anda].
-
-INPUT UTAMA: outputs/interpretation_package.md (dari M8) +
-             semua file di outputs/ dan outputs/figures/
+INPUT UTAMA: outputs/interpretation_package.md (dari M8) + semua file di
+outputs/ dan outputs/figures/
 
 OUTPUT TARGET:
-- Per langkah: file .md terpisah di outputs/manuscript/
+- Per langkah L1-L9: file .md terpisah di outputs/manuscript/
 - Final (L10): outputs/manuscript_final.md + manuscript_final.docx +
-               prisma_scr_checklist.md
+               prisma_scr_checklist.md + coherence_audit.md +
+               modul9_summary.md
 
-=== ATURAN GLOBAL (BERLAKU UNTUK SEMUA LANGKAH L1-L10) ===
+=== BAGIAN C: ATURAN GLOBAL (BERLAKU UNTUK L1-L10) ===
 
 A. STANDAR: PRISMA-ScR 22-item + JBI Manual Ch.11
    (BUKAN PRISMA 2020 27-item — beda standar)
@@ -114,11 +110,12 @@ G. FOUNDATIONAL REFERENCES (wajib di-cite di Methods + Intro):
    - Tricco et al. (2018) PRISMA-ScR
    - Munn et al. (2018)
 
-Konfirmasi mengerti aturan global. Selanjutnya saya akan request langkah
-demi langkah.
+VERIFY: setup folder selesai + semua input artifact terkonfirmasi + aturan
+global di-pegang. Selanjutnya saya akan request langkah demi langkah (L1-L10).
+No preamble.
 ```
 
-> **💡 Manfaat Aturan Global:** Ditetapkan **sekali** di L0, langkah berikutnya cukup pointer "ikuti aturan global". Hemat token + konsistensi otomatis.
+> **💡 Manfaat single prompt:** Setup folder + brief context + aturan global ditetapkan **sekali** dalam 1 sesi. Langkah L1-L10 berikutnya cukup pointer "ikuti aturan global". Hemat token + konsistensi otomatis.
 
 ---
 

@@ -34,35 +34,34 @@ ScR_Project/                       ← folder yang sama dari Modul 6-7
 
 > **📁 Catatan:** Jika nama folder kerja Anda bukan `ScR_Project/`, gunakan nama yang sama dari Modul 6-7.
 
-### **0.2 Setup Tambahan via Cowork:**
+### **0.2 Setup Tambahan + Brief Awal (Single Prompt Cowork):**
 
 ```
-Lanjut Modul 8 di folder kerja saya [nama folder].
+Lanjut Modul 8 (Mapping + EGM) di folder kerja saya [nama folder dari M7].
+Eksekusi dua hal sekaligus:
 
-CREATE struktur output:
+=== BAGIAN A: SETUP STRUKTUR OUTPUT ===
+
 1. CREATE folder outputs/ di dalam folder kerja
 2. CREATE sub-folder outputs/figures/
 3. VERIFY charting.xlsx tersedia (input utama Modul 8)
 4. Konfirmasi total INCLUDED sources di charting.xlsx
 
-No preamble.
-```
+=== BAGIAN B: BRIEF AWAL CONTEXT ===
 
-### **0.3 Brief Awal Modul 8:**
+Setelah setup, simpan context untuk seluruh sesi Modul 8:
 
-```
-Lanjut Modul 8 (Mapping + EGM) di folder [nama folder Anda].
-
-Konteks:
 - Input: charting.xlsx (lengkap dengan QA jika ada)
 - Output: outputs/ folder (semua .md + figures/)
 - Standar: JBI Manual Ch.11 + PRISMA-ScR
 - Sintesis: descriptive + thematic + EGM (TIDAK ADA meta-analysis)
 - Bahasa klaim: DESCRIPTIVE saja ("mapped", "identified", "reported")
 - TIDAK ADA: "effective", "significant", "causes", "proves"
+- Output format default: tabel/bullet ringkas, no preamble
+- Bahasa: Indonesia
 
-Output kamu: tabel/bullet ringkas, no preamble, no narasi panjang.
-Bahasa Indonesia.
+Konfirmasi: setup folder + context siap untuk eksekusi L1-L4.
+No preamble.
 ```
 
 ---

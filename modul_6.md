@@ -21,89 +21,64 @@ ScR_Project/
 
 > **📁 Catatan Nama Folder:** `ScR_Project/` hanya **contoh**. Peserta bebas menggunakan nama folder lain yang sesuai dengan project — mis. `MyScR_GenAI_Education/`, `Tinjauan_Lingkup_2026/`, `[NamaTopik]_ScR/`. Penting: konsisten gunakan nama yang sama di semua prompt cowork sepanjang modul. Jika peserta sudah punya folder kerja existing (mis. di OneDrive/Google Drive), bisa pakai folder tsb — cukup ganti `ScR_Project/` di prompt-prompt berikutnya dengan nama folder peserta.
 
-### **0.2 Persiapan Folder via Claude Cowork:**
-
-Cowork bisa **buat struktur folder + generate file rujukan** otomatis. Peserta cukup punya `screening.xlsx` dari Modul 4 — sisanya Claude yang siapkan.
-
-**Prompt cowork:**
+### **0.2 Setup Folder + Brief Awal (Single Prompt Cowork):**
 
 ```
-Setup struktur folder kerja Scoping Review untuk full-text screening.
+Setup folder kerja Scoping Review + brief context untuk Modul 6 (full-text
+screening). Eksekusi dua hal sekaligus:
+
+=== BAGIAN A: SETUP STRUKTUR FOLDER ===
 
 1. CREATE folder utama: ScR_Project/ di [path target, mis. ~/Documents/]
-   - Gunakan mkdir / filesystem create. Jika folder sudah ada, konfirmasi
+   - Gunakan mkdir/filesystem create. Jika folder sudah ada, konfirmasi
      dulu sebelum overwrite.
 
 2. CREATE sub-folder kosong: ScR_Project/pdfs/
 
-3. MOVE file: pindahkan screening.xlsx dari [path asal saya] ke
+3. MOVE file: pindahkan screening.xlsx dari [path asal] ke
    ScR_Project/screening.xlsx
 
-4. CREATE 3 file rujukan baru di ScR_Project/ dengan isi yang saya berikan:
+4. CREATE 3 file rujukan di ScR_Project/ dengan isi yang saya paste:
 
-   File 1: ScR_Project/pcc_definitions.md
-   Isi:
+   File 1: pcc_definitions.md
    ---
    [Paste PCC + WHAT COUNTS/DOESN'T/EDGE CASES dari Modul 2 L3]
    ---
 
-   File 2: ScR_Project/reason_codes.md
-   Isi:
+   File 2: reason_codes.md
    ---
    [Paste 10 reason codes ScR + deskripsi dari Modul 4 L3]
    ---
 
-   File 3: ScR_Project/briefing.md
-   Isi:
+   File 3: briefing.md
    ---
-   [Paste screener briefing dari Modul 5 L1, termasuk decision tree
-   dan prinsip "when in doubt, INCLUDE"]
+   [Paste screener briefing dari Modul 5 L1, decision tree, prinsip
+   "when in doubt, INCLUDE"]
    ---
 
-5. VERIFY struktur akhir dengan menjalankan ls/dir di ScR_Project/.
-   Konfirmasi struktur sesuai:
-   ScR_Project/
-   ├── pdfs/
-   ├── screening.xlsx
-   ├── pcc_definitions.md
-   ├── reason_codes.md
-   └── briefing.md
+5. VERIFY struktur akhir (ls/dir ScR_Project/), konfirmasi sesuai 0.1.
 
-Output: ringkasan apa yang sudah dibuat + path absolut ScR_Project/.
+=== BAGIAN B: BRIEF AWAL CONTEXT ===
+
+Setelah folder siap, simpan context berikut untuk seluruh sesi Modul 6:
+
+- Folder kerja: ScR_Project/
+- Tugas: full-text screening untuk Scoping Review (JBI + PRISMA-ScR)
+- File rujukan: pcc_definitions.md, reason_codes.md, briefing.md
+- Spreadsheet: screening.xlsx
+- PDF source: folder pdfs/
+- Prinsip ScR: when in doubt, INCLUDE/UNCERTAIN
+- TIDAK ADA exclusion karena quality
+- Output format default: tabel ringkas, no preamble, no narasi panjang
+- Bahasa: Indonesia
+
+Konfirmasi: setup folder selesai + context siap untuk eksekusi L1-L3.
 No preamble.
 ```
 
-> **💡 Alternatif:** Jika peserta sudah punya file-file ini secara terpisah, cukup minta cowork **konsolidasi** ke `ScR_Project/`:
-> ```
-> Konsolidasi file berikut ke folder ScR_Project/:
-> - [path screening.xlsx]
-> - [path pcc_definitions.md]
-> - [path reason_codes.md]
-> - [path briefing.md]
-> Buat juga sub-folder pdfs/ kosong.
-> ```
+> **💡 Alternatif:** Jika file-file sudah ada terpisah, cukup minta cowork **konsolidasi** ke `ScR_Project/` dengan menyebut path masing-masing file di Bagian A.
 
-### **0.3 Brief Awal ke Claude Cowork (Setelah Folder Siap):**
-
-```
-Saya kerja di folder ScR_Project/. Tugas: full-text screening untuk
-Scoping Review (JBI + PRISMA-ScR).
-
-File rujukan di folder:
-- pcc_definitions.md (kriteria PCC)
-- reason_codes.md (10 kode eksklusi)
-- briefing.md (decision tree screener)
-
-Spreadsheet: screening.xlsx
-PDF source: folder pdfs/
-
-Prinsip ScR: when in doubt, INCLUDE/UNCERTAIN. TIDAK ADA exclusion karena
-quality.
-
-Output kamu: tabel ringkas, no preamble, no narasi. Bahasa Indonesia.
-```
-
-> **💡 Manfaat cowork:** Claude buat folder, generate file rujukan, dan akses semua file langsung. Tidak perlu paste PDF satu per satu. Brief awal cukup sekali — Claude pegang konteks sepanjang sesi.
+> **💡 Manfaat single prompt:** Cowork buat folder + simpan context dalam 1 sesi. Tidak perlu 2 round-trip prompt — peserta langsung bisa lanjut ke L1 setelah konfirmasi.
 
 ---
 
