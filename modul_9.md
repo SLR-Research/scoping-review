@@ -489,188 +489,102 @@ No preamble.
 
 ---
 
-## **LANGKAH 10: AUDIT + COMPILE FINAL (.md + .docx)**
+## **LANGKAH 10: AUDIT + COMPILE FINAL + HASIL AKHIR**
 
-### **10.1 Coherence Audit:**
+### **Prompt Cowork (single prompt — 5 fase otomatis, multi-file output):**
 
 ```
-Audit semua file di outputs/manuscript/.
+Eksekusi audit + compile final manuskrip end-to-end. Generate semua file
+deliverable dalam satu sesi.
+
+=== FASE 1: COHERENCE AUDIT ===
+Tulis ke outputs/coherence_audit.md (daftar issue + saran replacement):
 
 A. AUDIT REPETISI (Intro ↔ Discussion ↔ Conclusion):
-   - Identifikasi kalimat/frasa nyaris identik di ≥2 bagian
-   - Saran rewrite per bagian
+   - Kalimat/frasa nyaris identik di ≥2 bagian + saran rewrite
 
 B. AUDIT TERMINOLOGI (canonical dari pcc_definitions.md):
    - Konsistensi term kanonikal end-to-end
-   - Cek istilah ScR konsisten ("scoping review", "charting", "mapping",
-     "PCC", "sources")
-   - Tidak ada SLR-style terms ("systematic review", "extraction", "PICO",
-     "meta-analysis")
+   - Cek ScR-style: "scoping review", "charting", "mapping", "PCC", "sources"
+   - Cek tidak ada SLR-style: "systematic review", "extraction", "PICO",
+     "meta-analysis"
 
 C. AUDIT BAHASA DESCRIPTIVE (anti-causal):
-   - Scan semua file untuk: "effective", "significant", "causes", "proves",
+   - Scan trigger words: "effective", "significant", "causes", "proves",
      "pooled", "leads to"
-   - Saran replacement: "described", "reported", "characterized", "mapped"
+   - Replacement: "described", "reported", "characterized", "mapped"
 
-Output: outputs/coherence_audit.md (daftar issue + replacement suggestions).
-No preamble.
-```
+=== FASE 2: PRISMA-ScR 22-ITEM COMPLIANCE ===
+Tulis ke outputs/prisma_scr_checklist.md (supplementary material).
 
-### **10.2 PRISMA-ScR 22-Item Compliance Check:**
+Format tabel: | # | Item | Section/Paragraf | Status (✓/⚠/✗) |
 
-```
-Audit manuskrip terhadap PRISMA-ScR 22-item checklist.
-Tulis ke outputs/prisma_scr_checklist.md (akan jadi supplementary material).
+- Item 1 (Title) → title.md
+- Item 2 (Abstract) → abstract.md
+- Item 3-4 (Intro) → introduction.md
+- Item 5-13 (Methods) → methods.md
+- Item 14-18 (Results) → results.md
+- Item 19-21 (Discussion) → discussion.md + conclusions.md
+- Item 22 (Funding) → tambahkan di compile (Fase 3)
+- Item 12 opsional (Critical Appraisal): jika skip, justifikasi wajib di Methods
 
-Format per item:
-| # | Item | Section/Paragraf di mana ter-cover | Status |
+Untuk MISSING/PARTIAL: rekomendasi fix spesifik.
 
-Item 1 (Title) — outputs/manuscript/title.md
-Item 2 (Abstract) — outputs/manuscript/abstract.md
-Item 3-4 (Intro: rationale, objectives) — introduction.md
-Item 5-13 (Methods) — methods.md
-Item 14-18 (Results) — results.md
-Item 19-21 (Discussion: summary, limitations, conclusions) — discussion.md
-                                                            + conclusions.md
-Item 22 (Funding) — wajib tambahkan section di final assembly
+=== FASE 3: COMPILE .md MASTER ===
+Compile semua section dari outputs/manuscript/ ke outputs/manuscript_final.md.
 
-Status: ✓ COVERED / ⚠ PARTIAL / ✗ MISSING
-Untuk item MISSING/PARTIAL: rekomendasi spesifik untuk fix.
-
-Item 12 (Critical Appraisal) opsional — jika skip, harus ada justifikasi
-di Methods.
-
-No preamble.
-```
-
-### **10.3 Final Assembly — Compile ke `.md` Master:**
-
-```
-Compile semua section dari outputs/manuscript/ menjadi satu file master:
-outputs/manuscript_final.md
-
-Urutan section di master:
-1. Title (dari title.md — pilih rekomendasi)
-2. Abstract (dari abstract.md)
-3. Keywords (3-5 keywords dari abstract — bisa generate)
-4. Introduction (dari introduction.md)
-5. Methods (dari methods.md)
-6. Results (dari results.md)
-7. Discussion (dari discussion.md)
-8. Future Research Agenda (dari future_research.md)
-9. Conclusions (dari conclusions.md)
-10. Funding [placeholder — peserta isi]
+Urutan 16 section:
+1. Title (dari title.md, pilih rekomendasi)
+2. Abstract
+3. Keywords (3-5, generate dari abstract)
+4. Introduction
+5. Methods
+6. Results
+7. Discussion
+8. Future Research Agenda
+9. Conclusions
+10. Funding [placeholder]
 11. Conflict of Interest [placeholder]
-12. AI Assistance Declaration: "We used Claude (Anthropic) as an AI
-    assistant for [list tahap: charting screening, draft generation, etc.].
+12. AI Assistance Declaration:
+    "We used Claude (Anthropic) as an AI assistant for [list tahap].
     All final decisions and content remained the responsibility of the
     authors."
-13. References (dari references.md)
-14. Figure Captions:
-    - Figure 1: fig1_prisma_scr_flow.svg
-    - Figure 2: fig2_temporal.svg
-    - Figure 3: fig3_egm.svg (HERO)
-    - dst (semua dari outputs/figures/)
+13. References
+14. Figure Captions (semua dari outputs/figures/, gunakan SVG filename)
 15. Tables (dari results.md)
-16. Supplementary Materials list:
-    - prisma_scr_checklist.md
-    - charting.xlsx (full data)
-    - screening.xlsx
-    - protocol di OSF [URL]
+16. Supplementary list: prisma_scr_checklist.md, charting.xlsx,
+    screening.xlsx, protocol OSF [URL]
 
-Pastikan:
-- Smooth transition antar section (tidak abrupt)
-- Heading hierarchy konsisten (# untuk section, ## untuk subseksi)
-- Figure/table callouts terlinking ke filename SVG
-- Canonical terminology konsisten
+Pastikan: smooth transitions, heading hierarchy konsisten, figure/table
+callouts ke SVG filename, canonical terminology.
 
-Output: outputs/manuscript_final.md (file master lengkap).
-No preamble.
-```
+=== FASE 4: COMPILE .docx (SUBMISSION-READY) ===
+Convert outputs/manuscript_final.md → outputs/manuscript_final.docx.
 
-### **10.4 Compile ke `.docx` (Submission-Ready):**
+Pilih metode yang feasible di sistem peserta:
 
-```
-Convert outputs/manuscript_final.md → outputs/manuscript_final.docx
-(format submission jurnal).
+OPSI A — Pandoc (recommended):
+  pandoc outputs/manuscript_final.md -o outputs/manuscript_final.docx \
+    --reference-doc=[template jurnal jika ada] \
+    --citeproc --bibliography=outputs/manuscript/references.bib
 
-Metode (Claude cowork pilih yang feasible):
+OPSI B — Python python-docx (jika Pandoc tidak ada):
+  Generate convert_to_docx.py: parse heading hierarchy → Word styles,
+  insert tables, figure placeholders, save .docx
 
-OPSI A — Pandoc (recommended, jika tersedia di sistem peserta):
-  pandoc outputs/manuscript_final.md \
-    -o outputs/manuscript_final.docx \
-    --reference-doc=[reference.docx jika peserta punya template jurnal] \
-    --citeproc \
-    --bibliography=outputs/manuscript/references.bib
+OPSI C — Manual fallback: output instruksi install Pandoc + run command
 
-  Catatan: jika peserta punya .docx template dari jurnal target,
-  pakai sebagai --reference-doc untuk styling otomatis.
+Formatting targets: Times New Roman 12pt, double-spaced, margin 1",
+heading styles built-in, references hanging indent 0.5", page numbers
+bottom right, line numbers continuous.
 
-OPSI B — Python (python-docx):
-  Jika Pandoc tidak tersedia, generate script convert_to_docx.py:
-  - Read manuscript_final.md
-  - Parse heading hierarchy → Word styles (Heading 1, 2, 3)
-  - Insert tables sebagai Word tables
-  - Insert figure placeholders dengan caption (peserta insert figure manual)
-  - Save ke manuscript_final.docx
+Catatan SVG: Word tidak embed SVG native — gunakan PNG version dari
+outputs/figures/ untuk insert (atau convert SVG→PNG/EMF dulu).
 
-OPSI C — Manual instruksi (fallback):
-  Jika cowork tidak bisa execute conversion, output instruksi step-by-step
-  untuk peserta:
-  1. Install Pandoc (https://pandoc.org)
-  2. Buka terminal di folder outputs/
-  3. Run: [command Pandoc lengkap]
-  4. Verify hasil docx
+=== FASE 5: PRE-SUBMISSION CHECKLIST + HASIL AKHIR ===
 
-FORMATTING TARGETS untuk .docx:
-- Font: Times New Roman 12pt (atau sesuai jurnal)
-- Spacing: double-spaced
-- Margins: 1 inch all sides
-- Headings: Word built-in styles (Heading 1, 2, 3)
-- References: hanging indent 0.5 inch
-- Page numbers: bottom right
-- Line numbers: continuous (banyak jurnal minta untuk peer review)
+Tulis ke outputs/modul9_summary.md (HASIL AKHIR + checklist):
 
-INSERT FIGURES:
-- SVG dari outputs/figures/ tidak embed otomatis di Word
-- Convert SVG → PNG atau EMF terlebih dahulu untuk embed
-- Atau: manual insert via Word, pakai PNG version (sudah ada di outputs/figures/)
-
-Output: outputs/manuscript_final.docx (siap submit) +
-        konfirmasi metode yang digunakan + langkah manual yang masih perlu
-        dilakukan peserta (mis. insert figures, isi funding/COI placeholders).
-No preamble.
-```
-
-### **10.5 Pre-Submission Checklist:**
-
-```
-Generate pre-submission checklist ke outputs/pre_submission_checklist.md:
-
-[ ] manuscript_final.docx generated
-[ ] Word count total + abstract sesuai jurnal target
-[ ] Reference style sesuai jurnal target
-[ ] Figures (SVG di submission, PNG di preview): 6+ files
-[ ] Tables embedded di docx
-[ ] Funding section diisi (BUKAN placeholder)
-[ ] Conflict of Interest diisi
-[ ] AI Assistance Declaration ada
-[ ] Author info + affiliations + ORCID
-[ ] Cover letter (terpisah, perlu dibuat sendiri)
-[ ] PRISMA-ScR checklist (supplementary): prisma_scr_checklist.md
-[ ] Protocol URL (OSF) disclosed
-[ ] Charting.xlsx + screening.xlsx siap supplementary (atau anonymized)
-[ ] Ethical statement (jika applicable)
-
-Output: outputs/pre_submission_checklist.md.
-No preamble.
-```
-
----
-
-## **HASIL AKHIR**
-
-```
 === MANUSCRIPT WRITING COMPLETE (ScR) ===
 
 PER-SECTION FILES (outputs/manuscript/):
@@ -682,24 +596,47 @@ FINAL DELIVERABLES:
 - outputs/manuscript_final.docx (submission-ready)
 - outputs/prisma_scr_checklist.md (supplementary 22-item)
 - outputs/coherence_audit.md (audit log)
-- outputs/pre_submission_checklist.md
+- outputs/modul9_summary.md (file ini)
+
+PRE-SUBMISSION CHECKLIST:
+[ ] manuscript_final.docx generated
+[ ] Word count total + abstract sesuai jurnal target
+[ ] Reference style sesuai jurnal target
+[ ] Figures (SVG submission, PNG preview): 6+ files
+[ ] Tables embedded di docx
+[ ] Funding section diisi (BUKAN placeholder)
+[ ] Conflict of Interest diisi
+[ ] AI Assistance Declaration ada
+[ ] Author info + affiliations + ORCID
+[ ] Cover letter (terpisah)
+[ ] PRISMA-ScR checklist (supplementary)
+[ ] Protocol URL (OSF) disclosed
+[ ] charting.xlsx + screening.xlsx siap supplementary
+[ ] Ethical statement (jika applicable)
 
 REVIEWER-PROOF ELEMENTS (ScR-specific):
 - "Scoping review" eksplisit di Title, Abstract, Methods
 - PCC framework (bukan PICO) end-to-end
 - PRISMA-ScR flow diagram (bukan PRISMA 2020)
-- Critical appraisal: non-exclusionary atau dijustifikasi tidak dilakukan
-- Charting (bukan extraction) dengan iterative refinement
-- EGM hero figure (jika gap identification)
-- Triple-track implications (research/practice/policy)
-- Future Research Agenda dengan matriks prioritas
+- Critical appraisal: non-exclusionary / justifikasi skip
+- Charting (bukan extraction) iteratif
+- EGM hero figure
+- Triple-track implications
+- Future Research Agenda matriks prioritas
 - TIDAK ADA causal/effect/meta-analysis claims
-- JBI Manual Ch.11 + PRISMA-ScR + Munn et al. (2018) di references
-- Protocol registration di OSF disclosed
-- AI Assistance Declaration di Methods
+- JBI + PRISMA-ScR + Munn et al. (2018) di references
+- Protocol OSF disclosed + AI Declaration di Methods
 
 NEXT: Submission ke jurnal target. Cover letter dibuat terpisah.
+
+=== KONFIRMASI AKHIR ===
+Konfirmasi semua file deliverable tersimpan + path absolut + langkah manual
+yang masih perlu peserta selesaikan (insert figures di Word, isi funding/COI
+placeholders, write cover letter).
+No preamble.
 ```
+
+> **💡 Manfaat single prompt:** L10 mengeksekusi 5 fase berurutan dalam satu sesi cowork — audit → compliance → compile .md → compile .docx → checklist + summary. Tidak butuh section "HASIL AKHIR" terpisah; file `modul9_summary.md` menggantikannya.
 
 ---
 
