@@ -106,9 +106,9 @@ No preamble.
 
 ---
 
-## **LANGKAH 2: PILOT CHARTING (5-10 SUMBER) + REFINE FORM**
+## **LANGKAH 2: PILOT CHARTING (5-10 SUMBER)**
 
-### **2.1 Eksekusi Pilot via Cowork:**
+### **Prompt Cowork:**
 
 ```
 Pilot charting dengan 5-10 sumber sample.
@@ -130,44 +130,42 @@ Pilot charting dengan 5-10 sumber sample.
 No preamble.
 ```
 
-### **2.2 Refine Form (Berdasarkan Pilot):**
+> **💡 Iterative refinement** adalah prinsip Levac et al. Pilot observations dari Langkah 2 akan langsung dipakai untuk refine form + full charting di Langkah 3.
+
+---
+
+## **LANGKAH 3: REFINE FORM + FULL CHARTING (BATCH)**
+
+### **Prompt Cowork:**
 
 ```
-Berdasarkan pilot observations:
+Berdasarkan pilot observations dari L2:
+
+BAGIAN A — REFINE FORM (jika perlu revisi):
 1. SARAN REVISI charting form (tambah/hapus/rephrase kolom)
 2. Update charting_form.md dengan revisi
 3. Update Sheet "Charting" charting.xlsx (tambah/hapus kolom sesuai)
 4. Log perubahan ke Sheet "Pilot_Log":
    Iterasi | Tanggal | Perubahan | Alasan
 
-No preamble.
-```
+(Jika pilot sudah OK tanpa revisi: skip A, langsung ke B + catat di Pilot_Log
+"v1 final, no revisions needed".)
 
-> **💡 Iterative refinement** adalah prinsip Levac et al. Dokumentasi revisi = bukti rigor metodologis untuk Methods.
-
----
-
-## **LANGKAH 3: FULL CHARTING (BATCH)**
-
-### **Prompt Cowork:**
-
-```
-Chart sisa sources di charting.xlsx (yang belum terisi).
-
-Batch 5-10 sumber sekaligus. Untuk setiap:
-1. Baca PDF dari pdfs/
-2. Chart sesuai charting_form.md (versi final pasca-pilot)
-3. Aturan sama L2: evidence-backed, [NOT REPORTED] jujur, canonical terms,
-   [AMBIGUOUS] untuk borderline
-4. Isi langsung Sheet "Charting"
-
-Output ringkas per batch:
-- Jumlah sources di-chart
-- NR rate per kolom (untuk monitoring)
-- Daftar [AMBIGUOUS] yang butuh review manual
+BAGIAN B — FULL CHARTING SISA SOURCES:
+1. Chart sisa sources di charting.xlsx yang belum terisi
+2. Batch 5-10 sumber sekaligus, baca PDF dari pdfs/
+3. Aturan: evidence-backed, [NOT REPORTED] jujur, canonical terms dari
+   pcc_definitions.md, [AMBIGUOUS: alasan] untuk borderline
+4. Isi langsung Sheet "Charting" charting.xlsx
+5. Output ringkas per batch:
+   - Jumlah sources di-chart
+   - NR rate per kolom (untuk monitoring)
+   - Daftar [AMBIGUOUS] yang butuh review manual
 
 No preamble.
 ```
+
+> **💡 Manfaat penggabungan:** Refine form + langsung apply ke sisa sources dalam satu sesi cowork. Tidak ada break antara perbaikan dan eksekusi — hemat token + workflow lebih natural.
 
 ### **Verifikasi Manual (Spot-Check 20%):**
 
@@ -175,7 +173,7 @@ Peserta:
 1. Pilih random 20% sources yang sudah di-chart
 2. Buka PDF + bandingkan dengan baris di charting.xlsx
 3. Cek akurasi 3 kolom kritis: Concept Operationalization, Context, Key Findings
-4. Jika disagreement >20%: kembali ke L2, refine form lagi
+4. Jika disagreement >20%: kembali ke L2 (pilot ulang dengan form revised)
 5. Jika <20%: PROCEED
 
 ---
