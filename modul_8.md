@@ -120,97 +120,75 @@ No preamble.
 
 ## **LANGKAH 2: THEMATIC MAPPING + CROSS-TABULATION**
 
-### **2.1 Categorical Analysis per Kolom Kunci:**
+### **Prompt Cowork (single prompt — 3 fase otomatis):**
 
 ```
-Lakukan categorical analysis dari charting.xlsx untuk kolom kunci:
-- Concept Operationalization
-- Context Details
-- Methodology approach
-- Key findings (tematik)
+Generate thematic mapping lengkap dari charting.xlsx. Tulis semua ke
+outputs/thematic_mapping.md (sequential append per fase).
 
+=== FASE 1: CATEGORICAL ANALYSIS PER KOLOM KUNCI ===
+Untuk kolom: Concept Operationalization, Context Details, Methodology, Key Findings.
 Untuk setiap kolom:
-1. Identifikasi kategori-kategori yang muncul
-2. Hitung frekuensi per kategori
-3. Jika kategori >15: lakukan second-level clustering ke 5-7 meta-kategori
-4. Sajikan tabel: Kategori | Frekuensi | % | Contoh sources
+- Identifikasi kategori yang muncul
+- Hitung frekuensi per kategori
+- Jika kategori >15: second-level clustering ke 5-7 meta-kategori
+- Sajikan tabel: Kategori | Frekuensi | % | Contoh sources
 
-Tulis ke outputs/thematic_mapping.md sebagai bagian "Categorical Analysis".
+=== FASE 2: THEMATIC SYNTHESIS PER RQ ===
+Untuk setiap RQ (primary + 3 secondary), tulis synthesis 100-150 kata
+berdasarkan categorical analysis Fase 1.
 
-No preamble.
-```
-
-### **2.2 Thematic Synthesis per RQ:**
-
-```
-Untuk setiap RQ (primary + 3 secondary), tulis thematic synthesis 100-150 kata
-berdasarkan categorical analysis.
-
-Aturan bahasa ScR:
+Aturan bahasa ScR (WAJIB):
 - "N sources reported [finding]"
 - "Common theme was [...]"
 - "Mapping indicates [...]"
 - JANGAN: "evidence shows X causes Y", "significant effect"
 
-Append ke outputs/thematic_mapping.md sebagai bagian "Thematic Synthesis per RQ".
+=== FASE 3: CROSS-TABULATION MATRIX ===
+- Matrix Concept × Context (rows × cols), cell value = N sources
+- Identifikasi DENSE cells (n > median) + GAP cells (n=0 atau <3)
+- Tabel matrix di thematic_mapping.md
+- Visualisasi heatmap dual-format ke outputs/figures/:
+  · fig6_crosstab.svg (vector)
+  · fig6_crosstab.png (DPI 300)
 
+OUTPUT FINAL: konfirmasi semua 3 fase tertulis + path file + ringkasan
+top-3 dense cells + top-3 gap cells.
 No preamble.
 ```
 
-### **2.3 Cross-Tabulation Matrix:**
-
-```
-Generate cross-tabulation Concept × Context dari charting.xlsx.
-
-1. Matrix: rows = Concept categories, cols = Context categories
-2. Cell value = jumlah sources
-3. Identifikasi:
-   - DENSE cells (n > median) — well-mapped areas
-   - GAP cells (n = 0 atau < 3) — underexplored
-
-4. Output:
-   - Tabel matrix di outputs/thematic_mapping.md
-   - Visualisasi heatmap dual-format:
-     · outputs/figures/fig6_crosstab.svg
-     · outputs/figures/fig6_crosstab.png (DPI 300)
-
-No preamble.
-```
+> **💡 Manfaat single prompt:** Cowork eksekusi categorical → thematic → cross-tab berurutan dalam satu sesi. Tidak ada break antar fase, hemat token.
 
 ---
 
 ## **LANGKAH 3: EVIDENCE GAP MAP (EGM) + GAP INVENTORY**
 
-### **3.1 Evidence Gap Map — Hero Figure:**
+### **Prompt Cowork (single prompt — EGM + Gap Inventory bersamaan):**
 
 ```
-Generate Evidence Gap Map (EGM) — ini akan jadi figure utama manuskrip.
+Berdasarkan thematic_mapping.md (cross-tabulation) dari L2, generate dua
+output bersamaan:
 
-Pilihan struktur (rekomendasikan default berdasarkan data saya):
+=== OUTPUT 1: EVIDENCE GAP MAP (HERO FIGURE) ===
+
+Pilihan struktur (rekomendasikan default berdasarkan data):
 - 2D heatmap (Concept × Context) — paling umum untuk ScR
-- Bubble plot (size = N sources, color = quality jika QA dilakukan)
+- Bubble plot (size = N sources, color = quality jika QA ada)
 - Table-based dengan shading
 
-REKOMENDASI default: heatmap 2D dengan optional 3rd dimension (color = quality).
+DEFAULT: heatmap 2D dengan optional 3rd dim (color = quality).
 
 Generate:
 1. EGM hero figure dual-format di outputs/figures/ (aspect 4:3):
-   - fig3_egm.svg (vector — untuk submission jurnal)
-   - fig3_egm.png (DPI 300 — untuk slide/preview)
-2. Deskripsi naratif EGM (200-250 kata) di outputs/thematic_mapping.md
-   sebagai bagian "Evidence Gap Map"
-3. Tag dense cells + gap cells eksplisit
+   - fig3_egm.svg (vector — submission jurnal)
+   - fig3_egm.png (DPI 300 — slide/preview)
+2. Naratif EGM (200-250 kata) — append ke outputs/thematic_mapping.md
+   sebagai section "Evidence Gap Map"
+3. Tag dense cells + gap cells eksplisit di naratif
 
-No preamble.
-```
+=== OUTPUT 2: GAP INVENTORY ===
 
-### **3.2 Gap Inventory:**
-
-```
-Berdasarkan EGM + cross-tabulation + categorical analysis, generate Gap
-Inventory komprehensif. Tulis ke outputs/gap_inventory.md.
-
-Struktur:
+Tulis ke outputs/gap_inventory.md dengan struktur:
 
 1. GAP KUANTITATIF (PCC kombinasi sparse):
    - Gap 1: [Concept X] dalam [Context Y] — n=[N]
@@ -220,133 +198,111 @@ Struktur:
 
 2. GAP KUALITATIF / KONSEPTUAL:
    - Konsep [X] didefinisikan dengan [N] cara berbeda
-   - Tension antar definisi: [...]
-   - Rekomendasi terminologi: [...]
+   - Tension antar definisi + rekomendasi terminologi
 
 3. GAP METODOLOGIS:
    - Desain [X] underused untuk [Concept Y]
-   - Pendekatan analisis yang sparse
+   - Pendekatan analisis sparse
 
 4. GAP TEMPORAL:
    - Periode [X] sparse meski [Concept Y] tetap relevan
 
-PRIORITISASI: pilih 3-5 priority gaps berdasarkan kombinasi:
-- Signifikansi teoritis
-- Kebutuhan praktik
-- Feasibility penelitian
+PRIORITISASI: pilih 3-5 priority gaps berdasarkan signifikansi teoritis +
+kebutuhan praktik + feasibility penelitian.
 
-Output ringkas + path file.
+OUTPUT FINAL: konfirmasi 2 file tersimpan + path absolut + ringkasan
+3-5 priority gaps yang dipilih.
 No preamble.
 ```
 
 ---
 
-## **LANGKAH 4: INTERPRETATION PACKAGE (BRIDGE KE MODUL 9)**
+## **LANGKAH 4: INTERPRETATION PACKAGE + FINAL SUMMARY (BRIDGE KE MODUL 9)**
 
-### **Prompt Cowork:**
+### **Prompt Cowork (single prompt — generate 2 file output):**
 
 ```
-Generate interpretation package siap-Modul 9. Tulis ke
-outputs/interpretation_package.md.
+Generate dua file output dari semua artifact L1-L3 (descriptive_summary.md,
+thematic_mapping.md, gap_inventory.md, charting.xlsx, figures/).
 
-Struktur:
+=== OUTPUT 1: outputs/interpretation_package.md (UNTUK MODUL 9) ===
 
-1. ANSWERS TO RESEARCH QUESTIONS (ScR style — descriptive):
-   - Primary RQ: [50-100 kata jawaban grounded di mapping]
+Struktur 7 komponen:
+
+1. ANSWERS TO RESEARCH QUESTIONS (ScR style — DESCRIPTIVE only):
+   - Primary RQ: [50-100 kata, grounded di mapping]
    - Secondary RQ 1-3: format serupa
    ATURAN: BUKAN claim kausal/effect. ScR DESCRIBES, tidak EVALUATES.
 
 2. KEY FINDINGS (3-5 headline messages):
-   - Finding 1: descriptive statement + N sources + implikasi mapping
-   - Finding 2-5: format serupa
-   CONTOH BENAR: "Literatur didominasi studi dari [region] (78%); hanya
-                  6% dari Asia Tenggara"
-   CONTOH SALAH: "Evidence menunjukkan X efektif untuk Y" (causal claim)
+   - Format: descriptive statement + N sources + implikasi mapping
+   ✓ BENAR: "Literatur didominasi studi dari [region] (78%); 6% dari Asia Tenggara"
+   ✗ SALAH: "Evidence menunjukkan X efektif untuk Y" (causal claim)
 
 3. CONCEPTUAL CLARIFICATIONS (jika Tipe Gap B):
-   - Variasi definisi yang ditemukan
-   - Rekomendasi unifikasi atau plurality
+   - Variasi definisi + rekomendasi unifikasi atau plurality
 
 4. SURPRISING / UNEXPECTED MAPPING PATTERNS:
-   - Pattern surprising: [statement]
-   - Penjelasan: [...]
+   - Pattern + penjelasan
 
 5. GAP-DRIVEN FUTURE RESEARCH AGENDA:
-   - 3 HIGH priority + 2 MEDIUM + 1 LONG-TERM
-   - Setiap gap: research question (PCC-aligned) + suggested methodology
+   - 3 HIGH + 2 MEDIUM + 1 LONG-TERM
+   - Setiap gap: RQ (PCC-aligned) + suggested methodology
 
 6. TRIPLE-TRACK IMPLICATIONS:
-   - For Research: [...]
-   - For Practice: [...]
-   - For Policy: [...]
+   - For Research / Practice / Policy
 
 7. LIMITATIONS SELF-AUDIT (3-tier):
-   - Review-level: database coverage, geographic bias, timeframe, grey lit
-     coverage
-   - Source-level: NR rate, heterogeneity, inaccessibility
-   - Mapping-level: subjectivity in categorization, EGM granularity
-
-   ScR-SPECIFIC DISCLAIMERS (wajib):
+   - Review-level (database, geographic bias, timeframe, grey lit coverage)
+   - Source-level (NR rate, heterogeneity, inaccessibility)
+   - Mapping-level (subjectivity, EGM granularity)
+   ScR-SPECIFIC DISCLAIMERS (wajib disertakan):
    - "ScR maps evidence, does not assess effectiveness"
    - "Quality reported descriptively, not used for exclusion"
    - "No meta-analysis (beyond ScR methodology)"
 
-Output ringkas + path file.
+=== OUTPUT 2: outputs/modul8_summary.md (HASIL AKHIR MODUL 8) ===
+
+Format ringkas:
+
+=== MAPPING + SYNTHESIS PACKAGE (ScR) ===
+
+L1 DESCRIPTIVE SUMMARY:
+- Total sources: [N] (peer: X, grey: Y) | Temporal trend | Geographic breakdown
+- QA distribution (jika ada)
+
+L2 THEMATIC MAPPING (outputs/thematic_mapping.md):
+- Categorical analysis per kolom kunci [ringkas top-3]
+- Thematic synthesis per RQ
+- Cross-tabulation Concept × Context [top dense + gap cells]
+
+L3 EVIDENCE GAP MAP:
+- Hero figure: outputs/figures/fig3_egm.svg + .png
+- Gap Inventory (outputs/gap_inventory.md): 4 jenis gap + 3-5 priority
+
+L4 INTERPRETATION PACKAGE (outputs/interpretation_package.md):
+- Answers to RQs (descriptive)
+- 3-5 key findings (mapping-grounded, NOT causal)
+- Conceptual clarifications, surprising patterns
+- Future Research Agenda (3 HIGH + 2 MEDIUM + 1 LONG-TERM)
+- Triple-track implications, Limitations + ScR disclaimers
+
+FIGURES (outputs/figures/) — semua dual-format SVG + PNG:
+- fig1_prisma_scr_flow (dari M6) | fig2_temporal | fig3_egm (HERO)
+- fig4_doctype | fig5_pcc | fig6_crosstab
+
+Format guideline:
+- SVG: submission jurnal + embed GitBook (vector)
+- PNG: slide/preview/draft (DPI 300)
+
+NEXT: Manuscript Writing (Modul 9) — semua artifacts di outputs/ siap-feed.
+
+=== KONFIRMASI ===
+Konfirmasi 2 file tersimpan + path absolut.
 No preamble.
 ```
 
----
-
-## **HASIL AKHIR**
-
-```
-=== MAPPING + SYNTHESIS PACKAGE (ScR) ===
-
-DESCRIPTIVE SUMMARY (outputs/descriptive_summary.md):
-- Total sources: [N] (peer: X, grey: Y)
-- Temporal: [trend]
-- Geographic: [breakdown + bias disclosure jika ada]
-- Document type / PCC components: [breakdown]
-- QA distribution: [jika ada]
-
-THEMATIC MAPPING (outputs/thematic_mapping.md):
-- Categorical analysis per kolom kunci
-- Thematic synthesis per RQ (primary + 3 secondary)
-- Cross-tabulation Concept × Context
-
-EVIDENCE GAP MAP:
-- Hero figure: outputs/figures/fig3_egm.png
-- Naratif description: di thematic_mapping.md
-
-GAP INVENTORY (outputs/gap_inventory.md):
-- Kuantitatif / Kualitatif / Metodologis / Temporal
-- 3-5 priority gaps untuk Future Research Agenda
-
-INTERPRETATION PACKAGE (outputs/interpretation_package.md):
-- Answers to RQs (descriptive)
-- 3-5 key findings (mapping-grounded, not causal)
-- Conceptual clarifications
-- Surprising patterns
-- Gap-driven future research (3 HIGH + 2 MEDIUM + 1 LONG-TERM)
-- Triple-track implications (research/practice/policy)
-- Limitations self-audit + ScR disclaimers
-
-FIGURES (outputs/figures/) — semua dual-format SVG + PNG:
-- fig1_prisma_scr_flow.svg + .png (dari Modul 6)
-- fig2_temporal.svg + .png
-- fig3_egm.svg + .png (HERO FIGURE)
-- fig4_doctype.svg + .png
-- fig5_pcc.svg + .png
-- fig6_crosstab.svg + .png
-
-Format guideline:
-- SVG: untuk submission jurnal (scalable vector, tidak pecah saat di-resize)
-  + embed di GitBook
-- PNG: untuk slide presentasi, preview, manuscript draft (DPI 300)
-
-NEXT: Manuscript Writing (Modul 9) — semua artifacts di outputs/
-siap di-feed ke writing prompts.
-```
+> **💡 Manfaat single prompt:** L4 sekaligus menghasilkan input utama Modul 9 (interpretation_package.md) dan checkpoint summary (modul8_summary.md). Tidak butuh section "HASIL AKHIR" terpisah — file `modul8_summary.md` sudah menggantikannya.
 
 ---
 
