@@ -1,540 +1,391 @@
-# Modul 8: Collating, Summarizing, dan Reporting Results (Scoping Review)
+# Modul 8: Mapping, Synthesis, dan Evidence Gap Map (Claude Cowork)
+
+> **🎯 Output Modul Ini:** Mapping lengkap (descriptive + thematic + EGM) + Gap Inventory + Interpretation Package, siap untuk manuscript writing di Modul 9.
+
+> **🤝 Workflow Modul Ini:** Lanjutan dari Modul 7 — gunakan **folder kerja yang sama**. Claude cowork akses `charting.xlsx`, generate visualisasi langsung (PNG/PDF), dan tulis output ke file `.md`.
+
+> **📌 Prinsip ScR:** Sintesis bersifat **deskriptif + tematik + mapping** — TIDAK ADA meta-analysis, GRADE, atau effect-size pooling. Klaim **DESCRIPTIVE**, bukan kausal/inferensial.
 
 ---
 
-## **LANGKAH 1: DESCRIPTIVE NUMERICAL SUMMARY**
+## **LANGKAH 0: PERLUASAN FOLDER KERJA (LANJUTAN MODUL 7)**
 
-> **🎯 Tujuan:** Pahami karakter data secara menyeluruh SEBELUM membangun peta tematik. Untuk ScR, ini **fondasi WAJIB** — descriptive numerical summary adalah komponen inti Results (Arksey & O'Malley step 5; JBI Manual Ch.11 step 7-8). Tidak ada meta-analysis di ScR; sintesis bersifat deskriptif + tematik.
+### **0.1 Tambahan Struktur Folder:**
 
-### **Prompt untuk Claude:**
 ```
-[Upload charting_scr_[topik].xlsx dari Modul 7]
-
-Context dari Modul 7:
-- Charting framework: [JBI standard / PCC-driven / Thematic / Policy-oriented / Custom]
-- Total final INCLUDED sources: [N] (peer: [X], grey: [Y])
-- Optional QA performed: [YES / NO]
-- Mapping approach verdict (Modul 7 L4): [Descriptive / Thematic / Gap Map / Hybrid]
-
-Pikirkan secara mendalam dan bertahap sebelum memberikan kesimpulan.
-
-=== TUGAS 1: DESCRIPTIVE NUMERICAL SUMMARY ===
-
-1. SOURCE TYPE DISTRIBUTION:
-   - Peer-reviewed: [N] ([%])
-   - Grey literature: [N] ([%]) — breakdown per sub-type (report, thesis, policy brief, preprint)
-
-2. DOCUMENT TYPE DISTRIBUTION (untuk peer-reviewed):
-   - Journal article: [N]
-   - Conference paper: [N]
-   - Review: [N]
-   - Book chapter: [N]
-
-3. TEMPORAL DISTRIBUTION:
-   - Tahun publikasi (min, max, median)
-   - Time trend: apakah meningkat (growing field), menurun (declining), atau stable?
-   - Identifikasi burst period (tahun dengan banyak publikasi)
-   - Implikasi: apakah konsep yang dipetakan masih emerging atau mature?
-
-4. GEOGRAPHIC DISTRIBUTION:
-   - Negara/region breakdown
-   - Identifikasi dominance (jika ada) — mis. 70% dari USA/Europe
-   - % dari Global North vs Global South
-   - Breakdown Indonesia vs non-Indonesia (jika Context Indonesia)
-   - PENTING: ini akan jadi bahan disclosure bias geografis di Discussion
-
-5. STUDY DESIGN / DOCUMENT TYPE DISTRIBUTION:
-   - Design breakdown (jika empiris): RCT, cross-sectional, qualitative, mixed, dll.
-   - Document type breakdown (jika mixed): empirical, conceptual, policy, review
-   - % empirical vs conceptual vs policy
-
-6. SAMPLE SIZE STATISTICS (jika applicable):
-   - Range (min, max)
-   - Median, mean
-   - Total participants across studies
-
-7. PCC COMPONENT DISTRIBUTION:
-   - P (Population): breakdown karakteristik
-   - C (Concept): breakdown jenis/variasi Concept
-   - C (Context): breakdown setting, kultural, temporal
-
-8. QUALITY DISTRIBUTION (jika QA dilakukan, Modul 7 L3):
-   - HIGH: [N] ([%])
-   - MODERATE: [N] ([%])
-   - LOW: [N] ([%])
-   - CATATAN: dilaporkan deskriptif, bukan exclusionary
-
-=== TUGAS 2: VISUAL SUMMARY RECOMMENDATIONS ===
-
-Untuk setiap distribusi di atas, rekomendasikan jenis visualisasi yang paling
-informatif untuk Results section:
-
-- Temporal trend → line chart atau stacked bar per tahun
-- Geographic → world/region map atau bar chart
-- Source type × Document type → stacked bar atau grouped bar
-- PCC component breakdown → pie chart atau horizontal bar
-- Quality distribution (jika ada) → stacked bar
-
-Daftar figur yang akan jadi output di Modul 9:
-- Figure 1: PRISMA-ScR flow diagram (dari Modul 4-6)
-- Figure 2: Temporal distribution
-- Figure 3: Geographic distribution
-- Figure 4: [PCC-related mapping]
-- [dst — 5-7 figur umumnya ideal untuk ScR]
-
-Output: comprehensive descriptive numerical summary + list rekomendasi figur.
+ScR_Project/                       ← folder yang sama dari Modul 6-7
+├── pdfs/                          ← (dari M6)
+├── screening.xlsx                  ← (dari M6)
+├── charting.xlsx                   ← (dari M7) — INPUT UTAMA Modul 8
+├── charting_form.md                ← (dari M7)
+├── mapping_prep.md                 ← (dari M7)
+├── pcc_definitions.md              ← (dari M6)
+├── outputs/                        ← BARU — folder hasil mapping + figures
+│   ├── descriptive_summary.md
+│   ├── thematic_mapping.md
+│   ├── gap_inventory.md
+│   ├── interpretation_package.md
+│   └── figures/                    ← BARU — semua chart/figure (SVG + PNG)
+│       ├── fig2_temporal.svg + .png
+│       ├── fig3_egm.svg + .png   ← hero figure
+│       ├── fig4_geographic.svg + .png
+│       └── ...
 ```
 
-> **💡 Tips Claude:** Descriptive numerical summary untuk ScR **lebih penting** daripada untuk SLR. Ini bukan "gambaran tabel" tapi **substansi Results**. Investasi tinggi di sini (jam kerja + iterasi visualisasi) akan terbayar di Modul 9.
+> **📁 Catatan:** Jika nama folder kerja Anda bukan `ScR_Project/`, gunakan nama yang sama dari Modul 6-7.
+
+### **0.2 Setup Tambahan via Cowork:**
+
+```
+Lanjut Modul 8 di folder kerja saya [nama folder].
+
+CREATE struktur output:
+1. CREATE folder outputs/ di dalam folder kerja
+2. CREATE sub-folder outputs/figures/
+3. VERIFY charting.xlsx tersedia (input utama Modul 8)
+4. Konfirmasi total INCLUDED sources di charting.xlsx
+
+No preamble.
+```
+
+### **0.3 Brief Awal Modul 8:**
+
+```
+Lanjut Modul 8 (Mapping + EGM) di folder [nama folder Anda].
+
+Konteks:
+- Input: charting.xlsx (lengkap dengan QA jika ada)
+- Output: outputs/ folder (semua .md + figures/)
+- Standar: JBI Manual Ch.11 + PRISMA-ScR
+- Sintesis: descriptive + thematic + EGM (TIDAK ADA meta-analysis)
+- Bahasa klaim: DESCRIPTIVE saja ("mapped", "identified", "reported")
+- TIDAK ADA: "effective", "significant", "causes", "proves"
+
+Output kamu: tabel/bullet ringkas, no preamble, no narasi panjang.
+Bahasa Indonesia.
+```
 
 ---
 
-## **LANGKAH 2: THEMATIC / CATEGORICAL MAPPING**
+## **LANGKAH 1: DESCRIPTIVE NUMERICAL SUMMARY + VISUALISASI**
 
-> **🎯 Tujuan:** Kelompokkan sumber ke dalam kategori/tema yang informatif untuk menjawab RQ. Ini **inti analytical** ScR — bagaimana konsep/fenomena dipetakan dalam lanskap bukti.
+### **Prompt Cowork:**
 
-### **Prompt untuk Claude:**
 ```
-[Upload charting_scr_[topik].xlsx + descriptive summary dari L1]
+Generate descriptive summary dari charting.xlsx + visualisasi.
 
-Research Questions ScR (dari Modul 2 L5):
-- Primary: [question]
-- Secondary: [3 RQs]
+1. ANALISIS DESCRIPTIVE (output ke outputs/descriptive_summary.md):
 
-Framework charting (dari Modul 7): [...]
+   - Source distribution: peer (N, %) vs grey (N, %)
+   - Document type breakdown
+   - Temporal distribution: min/max/median tahun + trend (growing/declining/stable)
+   - Geographic distribution: top regions + % per region
+   - Study design / Doc type breakdown
+   - Sample size statistics (jika applicable)
+   - PCC component distribution (P, Concept, Context kategori + frekuensi)
+   - QA distribution (jika ada di charting.xlsx)
 
-=== TUGAS 1: CATEGORICAL ANALYSIS PER KOLOM KUNCI ===
+2. VISUALISASI (generate dan simpan ke outputs/figures/):
 
-Untuk setiap kolom kunci di charting form, lakukan categorical analysis:
+   Setiap figure WAJIB di-export dalam DUA format:
+   - **SVG** (vector — scalable, untuk submission jurnal & embed di GitBook)
+   - **PNG** (raster DPI 300 — untuk slide presentasi & preview cepat)
 
-Kolom kunci (sesuaikan dengan framework Anda):
+   File yang di-generate:
+   - fig2_temporal.svg + fig2_temporal.png — line chart distribusi tahun
+     (peer vs grey overlay)
+   - fig3_geographic.svg + fig3_geographic.png — bar chart top 10 negara/region
+   - fig4_doctype.svg + fig4_doctype.png — pie chart document type
+   - fig5_pcc.svg + fig5_pcc.png — stacked bar PCC components
+   - (fig1 = PRISMA-ScR flow diagram dari Modul 6, sudah ada)
+
+   Generate via Python (matplotlib/seaborn). Aspect 16:9 untuk slide-friendly.
+
+   Contoh kode export dual-format:
+   ```python
+   plt.savefig('outputs/figures/fig2_temporal.svg', bbox_inches='tight')
+   plt.savefig('outputs/figures/fig2_temporal.png', dpi=300, bbox_inches='tight')
+   ```
+
+3. GEOGRAPHIC HONESTY CHECK:
+   Jika ada region dominan (>50%), generate disclosure paragraph:
+   "Mapping ini didominasi sources dari [region] ([X]%). Implikasi
+   generalisasi terbatas pada konteks tsb."
+
+Output ringkas: ringkasan numerik + path semua figure yang di-generate.
+No preamble.
+```
+
+> **💡 Catatan Visualisasi:** Cowork bisa generate via Python script atau langsung render. **Selalu export dual-format (SVG + PNG)** — SVG untuk submission jurnal/GitBook (vector, tidak pecah), PNG untuk slide/preview. Jika cowork tidak bisa render visual langsung, output script `.py` ke `outputs/figures/generate_figures.py` dengan dual-export untuk peserta jalankan sendiri.
+
+---
+
+## **LANGKAH 2: THEMATIC MAPPING + CROSS-TABULATION**
+
+### **2.1 Categorical Analysis per Kolom Kunci:**
+
+```
+Lakukan categorical analysis dari charting.xlsx untuk kolom kunci:
 - Concept Operationalization
-- Context Details (setting, kultural)
+- Context Details
 - Methodology approach
 - Key findings (tematik)
-- Gap/future research noted
 
-Untuk tiap kolom:
-1. Identifikasi kategori-kategori yang muncul (open coding awal)
+Untuk setiap kolom:
+1. Identifikasi kategori-kategori yang muncul
 2. Hitung frekuensi per kategori
-3. Deteksi pola: dominance, clusters, outliers
-4. Minta Claude lakukan clustering awal jika kategori banyak (>15)
+3. Jika kategori >15: lakukan second-level clustering ke 5-7 meta-kategori
+4. Sajikan tabel: Kategori | Frekuensi | % | Contoh sources
 
-Contoh output untuk "Concept Operationalization":
+Tulis ke outputs/thematic_mapping.md sebagai bagian "Categorical Analysis".
 
-| Kategori | Frekuensi | % | Contoh sumber |
-|----------|-----------|---|---------------|
-| Kategori A | 12 | 27% | SCR003, SCR015, ... |
-| Kategori B | 8 | 18% | SCR007, SCR022, ... |
-| ... | ... | ... | ... |
-
-=== TUGAS 2: THEMATIC SYNTHESIS (NARRATIVE) ===
-
-Untuk setiap RQ, tulis narrative synthesis berdasarkan categorical analysis:
-
-PRIMARY RQ thematic synthesis:
-- Tema 1: [label]
-  - Dijumpai di [N] sumber
-  - Karakteristik: [...]
-  - Variasi yang ditemukan: [...]
-- Tema 2: [...]
-- ...
-
-SECONDARY RQ thematic synthesis (per RQ):
-- [format serupa]
-
-ATURAN BAHASA ScR (WAJIB):
-- Gunakan "mapping", "characterization", "describing", "identifying"
-- JANGAN pakai "pooled effect", "meta-analysis shows", "significant effect across studies"
-- BOLEH: "N studies reported [finding]", "common theme was [...]"
-- BOLEH: indicative ranges jika relevan — mis. "sample sizes ranged from 50 to 5000"
-- HINDARI causal claims yang tidak didukung single sumber
-
-=== TUGAS 3: CROSS-TABULATION ===
-
-Bangun matriks 2D untuk mencari pola:
-
-Contoh:
-- Concept × Context matriks (Concept kategori × Context kategori)
-- Cell berisi N sumber yang punya kombinasi tsb
-- Identifikasi cell dengan N tinggi (well-mapped area) dan N=0 (gap)
-
-Contoh hasil:
-                Context A   Context B   Context C
-Concept X       15          3           0
-Concept Y       8           12          2
-Concept Z       2           5           7
-
-Interpretasi:
-- Well-mapped: Concept X dalam Context A (n=15)
-- GAP: Concept X dalam Context C (n=0) — opportunity untuk future research
-- Emerging: Concept Z dalam Context C (n=7)
-
-Output:
-- Categorical analysis per kolom kunci
-- Thematic synthesis per RQ
-- Cross-tabulation matriks
-- Preliminary identification of well-mapped areas + gaps
+No preamble.
 ```
 
-> **💡 Tips Claude:** Thematic mapping seringkali **iteratif**: coba kategorisasi awal → bahas dengan co-author → refine kategori → final. Untuk ScR >50 sumber, pertimbangkan pakai Claude untuk clustering otomatis dulu ("group these 60 operationalizations into 5-7 thematic categories"), lalu human-review hasil clustering.
+### **2.2 Thematic Synthesis per RQ:**
+
+```
+Untuk setiap RQ (primary + 3 secondary), tulis thematic synthesis 100-150 kata
+berdasarkan categorical analysis.
+
+Aturan bahasa ScR:
+- "N sources reported [finding]"
+- "Common theme was [...]"
+- "Mapping indicates [...]"
+- JANGAN: "evidence shows X causes Y", "significant effect"
+
+Append ke outputs/thematic_mapping.md sebagai bagian "Thematic Synthesis per RQ".
+
+No preamble.
+```
+
+### **2.3 Cross-Tabulation Matrix:**
+
+```
+Generate cross-tabulation Concept × Context dari charting.xlsx.
+
+1. Matrix: rows = Concept categories, cols = Context categories
+2. Cell value = jumlah sources
+3. Identifikasi:
+   - DENSE cells (n > median) — well-mapped areas
+   - GAP cells (n = 0 atau < 3) — underexplored
+
+4. Output:
+   - Tabel matrix di outputs/thematic_mapping.md
+   - Visualisasi heatmap dual-format:
+     · outputs/figures/fig6_crosstab.svg
+     · outputs/figures/fig6_crosstab.png (DPI 300)
+
+No preamble.
+```
 
 ---
 
-## **LANGKAH 3: EVIDENCE GAP MAP (EGM)**
+## **LANGKAH 3: EVIDENCE GAP MAP (EGM) + GAP INVENTORY**
 
-> **🎯 Tujuan:** Gap identification adalah **kekuatan unik ScR** (Munn et al., 2018). Evidence Gap Map (EGM) adalah visualisasi sistematis area bukti yang kaya vs kosong. Ini sering jadi "hero figure" manuskrip ScR.
+### **3.1 Evidence Gap Map — Hero Figure:**
 
-### **Prompt untuk Claude:**
 ```
-[Upload cross-tabulation dari L2 + descriptive summary dari L1]
+Generate Evidence Gap Map (EGM) — ini akan jadi figure utama manuskrip.
 
-Tipe gap ScR (dari Modul 2 L1): [A/B/C/D]
-Primary RQ gap identification component: [...]
+Pilihan struktur (rekomendasikan default berdasarkan data saya):
+- 2D heatmap (Concept × Context) — paling umum untuk ScR
+- Bubble plot (size = N sources, color = quality jika QA dilakukan)
+- Table-based dengan shading
 
-=== TUGAS 1: EGM STRUCTURE DECISION ===
+REKOMENDASI default: heatmap 2D dengan optional 3rd dimension (color = quality).
 
-Pilih struktur EGM yang paling informatif:
+Generate:
+1. EGM hero figure dual-format di outputs/figures/ (aspect 4:3):
+   - fig3_egm.svg (vector — untuk submission jurnal)
+   - fig3_egm.png (DPI 300 — untuk slide/preview)
+2. Deskripsi naratif EGM (200-250 kata) di outputs/thematic_mapping.md
+   sebagai bagian "Evidence Gap Map"
+3. Tag dense cells + gap cells eksplisit
 
-OPSI A — 2D MATRIX / HEATMAP (paling umum)
-  Sumbu X: [mis. Concept categories atau Intervention types]
-  Sumbu Y: [mis. Context / Population / Outcome types]
-  Cell value: jumlah sumber dengan kombinasi tsb
-  Color intensity: menunjukkan density bukti
-  Contoh EGM yang baik: 3ie Evidence Gap Map, Campbell Collaboration EGM
-
-OPSI B — BUBBLE PLOT
-  Serupa matrix tapi dengan bubble size = N sumber
-  Warna bubble bisa encode dimensi ketiga (mis. quality level)
-
-OPSI C — INTERACTIVE EGM (online tools)
-  3ie EGM tool, Campbell EGM tool — untuk presentasi web
-  Cocok jika publikasi punya supplementary online material
-
-OPSI D — TABLE-BASED EGM
-  Tabel dengan shading (untuk publikasi print)
-  Simpler dan universal
-
-Rekomendasi untuk ScR saya: [pilih + alasan]
-
-=== TUGAS 2: EGM CONSTRUCTION ===
-
-Untuk struktur terpilih, bangun EGM:
-
-1. Tentukan sumbu:
-   - Sumbu X: [kategori dari Modul 7 charting]
-   - Sumbu Y: [kategori dari Modul 7 charting]
-
-2. Isi cell values:
-   - Count sumber per kombinasi
-   - Tandai cell dengan N=0 sebagai "GAP CELL"
-   - Tandai cell dengan N>median sebagai "DENSE CELL"
-
-3. Optional 3rd dimension (jika QA dilakukan):
-   - Color/pattern per quality tier dalam cell
-
-4. Annotation:
-   - Tambah row/column totals
-   - Tambah legend untuk kategori (deskripsi singkat)
-
-Format output:
-- EGM matrix (siap dirender di Excel/R/Python)
-- Deskripsi naratif EGM (paragraf siap-Results)
-
-=== TUGAS 3: GAP INVENTORY (DARI EGM) ===
-
-Berdasarkan EGM, buat inventory gap sistematis:
-
-GAP KUANTITATIF (area dengan sedikit/tanpa bukti):
-- Gap 1: [kombinasi X×Y, n=0 atau n<3]
-  - Mengapa gap ini penting? [alasan]
-  - Future research opportunity: [spesifik]
-- Gap 2: [...]
-
-GAP KUALITATIF (area dengan bukti, tapi masih belum terkonsep jelas):
-- Gap A: Konsep [X] didefinisikan dengan 5 cara berbeda di literatur
-  - Perlu klarifikasi konseptual
-- Gap B: [...]
-
-GAP METODOLOGIS:
-- Gap M1: Tidak ada studi longitudinal untuk Concept X dalam Context Y
-  - Opportunity untuk design selanjutnya
-- Gap M2: [...]
-
-GAP TEMPORAL (jika trend analysis menunjukkan):
-- Gap T1: Dalam 3 tahun terakhir, publikasi tentang [X] sparse
-  - Mungkin emerging atau declining area
-
-Output:
-- EGM visualization spec (siap-render)
-- EGM narrative description
-- Gap inventory kategorisasi (kuantitatif / kualitatif / metodologis / temporal)
-- Future research agenda preview
+No preamble.
 ```
 
-> **💡 Tips Claude:** EGM adalah **value-add utama** ScR — reviewer dan pembaca akan sangat menghargai. Investasi tinggi di kualitas EGM (clarity, kategori yang meaningful, visual yang readable). Konsultasi dengan supervisor untuk validasi kategorisasi sebelum final. Untuk EGM yang publish di jurnal top, pertimbangkan tool profesional seperti **3ie EGM builder** atau **Campbell Collaboration EGM platform**.
+### **3.2 Gap Inventory:**
+
+```
+Berdasarkan EGM + cross-tabulation + categorical analysis, generate Gap
+Inventory komprehensif. Tulis ke outputs/gap_inventory.md.
+
+Struktur:
+
+1. GAP KUANTITATIF (PCC kombinasi sparse):
+   - Gap 1: [Concept X] dalam [Context Y] — n=[N]
+     Mengapa penting: [...]
+     Future research opportunity: [...]
+   - Gap 2: [...]
+
+2. GAP KUALITATIF / KONSEPTUAL:
+   - Konsep [X] didefinisikan dengan [N] cara berbeda
+   - Tension antar definisi: [...]
+   - Rekomendasi terminologi: [...]
+
+3. GAP METODOLOGIS:
+   - Desain [X] underused untuk [Concept Y]
+   - Pendekatan analisis yang sparse
+
+4. GAP TEMPORAL:
+   - Periode [X] sparse meski [Concept Y] tetap relevan
+
+PRIORITISASI: pilih 3-5 priority gaps berdasarkan kombinasi:
+- Signifikansi teoritis
+- Kebutuhan praktik
+- Feasibility penelitian
+
+Output ringkas + path file.
+No preamble.
+```
 
 ---
 
-## **LANGKAH 4: INTERPRETATION PREPARATION (BRIDGE KE MODUL 9)**
+## **LANGKAH 4: INTERPRETATION PACKAGE (BRIDGE KE MODUL 9)**
 
-> **🎯 Tujuan:** Siapkan "mapping-to-manuscript bridge" — output L4 akan langsung masuk ke Modul 9 Results & Discussion.
+### **Prompt Cowork:**
 
-### **Prompt untuk Claude:**
 ```
-[Upload semua output L1-L3: descriptive summary, thematic mapping, EGM]
+Generate interpretation package siap-Modul 9. Tulis ke
+outputs/interpretation_package.md.
 
-Research Questions (dari Modul 2 L5):
-- Primary: [...]
-- Secondary: [3 RQs]
+Struktur:
 
-Gunakan penalaran mendalam. Sebelum menjawab, pertimbangkan:
-- Apa yang DIDUKUNG mapping jelas (density tinggi di EGM)?
-- Apa yang MUNCUL sebagai pola thematic kuat?
-- Apa GAP yang paling signifikan untuk implikasi riset/praktik?
-- Apa yang TIDAK BISA diklaim (ingat: ScR memetakan, bukan mensintesis effect)?
+1. ANSWERS TO RESEARCH QUESTIONS (ScR style — descriptive):
+   - Primary RQ: [50-100 kata jawaban grounded di mapping]
+   - Secondary RQ 1-3: format serupa
+   ATURAN: BUKAN claim kausal/effect. ScR DESCRIBES, tidak EVALUATES.
 
-=== TUGAS 1: ANSWERS TO RESEARCH QUESTIONS (ScR Style) ===
+2. KEY FINDINGS (3-5 headline messages):
+   - Finding 1: descriptive statement + N sources + implikasi mapping
+   - Finding 2-5: format serupa
+   CONTOH BENAR: "Literatur didominasi studi dari [region] (78%); hanya
+                  6% dari Asia Tenggara"
+   CONTOH SALAH: "Evidence menunjukkan X efektif untuk Y" (causal claim)
 
-Untuk setiap RQ, formulasi jawaban gaya ScR ("what is known", "how is X defined",
-"which methods are used"):
+3. CONCEPTUAL CLARIFICATIONS (jika Tipe Gap B):
+   - Variasi definisi yang ditemukan
+   - Rekomendasi unifikasi atau plurality
 
-PRIMARY RQ: [question]
-Answer (50-100 kata):
-- Direct answer grounded di mapping
-- Kuantifikasi (N sumber, breakdown utama)
-- Kualifikasi (konteks, heterogenitas)
-- BUKAN claim kausal atau effect size
+4. SURPRISING / UNEXPECTED MAPPING PATTERNS:
+   - Pattern surprising: [statement]
+   - Penjelasan: [...]
 
-SECONDARY RQ 1-3: (format serupa)
+5. GAP-DRIVEN FUTURE RESEARCH AGENDA:
+   - 3 HIGH priority + 2 MEDIUM + 1 LONG-TERM
+   - Setiap gap: research question (PCC-aligned) + suggested methodology
 
-=== TUGAS 2: KEY FINDINGS (3-5 POIN) ===
+6. TRIPLE-TRACK IMPLICATIONS:
+   - For Research: [...]
+   - For Practice: [...]
+   - For Policy: [...]
 
-Identifikasi 3-5 key findings ScR yang akan jadi "headline messages":
-- Finding 1: [statement deskriptif/mapping grounded]
-- Finding 2: [...]
-- ...
+7. LIMITATIONS SELF-AUDIT (3-tier):
+   - Review-level: database coverage, geographic bias, timeframe, grey lit
+     coverage
+   - Source-level: NR rate, heterogeneity, inaccessibility
+   - Mapping-level: subjectivity in categorization, EGM granularity
 
-Setiap finding:
-- Apa yang dipetakan (descriptive claim)?
-- Apa implikasi bagi pemahaman lanskap bukti?
-- Apa kontribusi untuk riset/praktik/kebijakan?
+   ScR-SPECIFIC DISCLAIMERS (wajib):
+   - "ScR maps evidence, does not assess effectiveness"
+   - "Quality reported descriptively, not used for exclusion"
+   - "No meta-analysis (beyond ScR methodology)"
 
-CONTOH ScR findings yang TEPAT:
-- "Literatur didominasi oleh studi berbasis Negara Barat (78%), dengan hanya
-  6% studi dari Asia Tenggara."
-- "Concept [X] dioperasionalisasikan dengan 5 cara berbeda di literatur,
-  dengan definisi [A] paling dominan (n=23)."
-- "Tidak ada studi longitudinal yang mengeksplorasi [Concept] dalam [Context]."
-
-CONTOH ScR findings yang SALAH (SLR-style):
-- "Evidence menunjukkan bahwa [X] meningkatkan [Y]" (causal claim)
-- "Pooled effect size menunjukkan..." (meta-analysis claim)
-- "Mayoritas studi membuktikan [X]" (inferential claim)
-
-=== TUGAS 3: SURPRISING/UNEXPECTED MAPPING PATTERNS ===
-
-Pattern yang tidak sesuai ekspektasi awal atau prior reviews:
-- Pattern surprising: [statement]
-- Kemungkinan penjelasan: [...]
-- Implikasi untuk pemahaman bidang: [...]
-
-=== TUGAS 4: CONCEPTUAL CLARIFICATIONS ===
-
-Jika RQ mencakup klarifikasi konsep (Tipe Gap B):
-- Konsep [X] didefinisikan dalam [N] cara:
-  · Definisi A (n=X studies): [deskripsi]
-  · Definisi B (n=Y studies): [deskripsi]
-  · ...
-- Tension antar definisi: [...]
-- Rekomendasi terminologi: [proposal untuk unifikasi atau mengakui plurality]
-
-=== TUGAS 5: GAP-DRIVEN FUTURE RESEARCH AGENDA ===
-
-Dari Gap Inventory (L3), formulasikan future research agenda spesifik
-(bukan "more research needed"):
-
-GAP 1: [dari inventory]
-  Future research question: [spesifik, PCC-aligned]
-  Suggested methodology: [...]
-  Priority: [HIGH/MEDIUM/LOW]
-
-GAP 2: [...]
-...
-
-ScR value: dari N gap yang teridentifikasi, rekomendasikan [3-5] priority
-areas berdasarkan kombinasi (a) signifikansi teoritis, (b) kebutuhan praktik,
-(c) feasibility penelitian.
-
-=== TUGAS 6: IMPLICATIONS FOR RESEARCH/PRACTICE/POLICY ===
-
-Untuk ScR, Discussion sering terorganisir per stakeholder:
-
-FOR RESEARCH:
-- Dialog dengan teori existing: [konfirmasi / ekspansi / tantangan]
-- Konsep yang butuh unifikasi atau ketajaman
-- Metodologi yang perlu dikembangkan
-
-FOR PRACTICE:
-- Panduan aplikatif berdasarkan mapping
-- Area dengan bukti kuat → rekomendasi praktik
-- Area dengan bukti lemah → caveat untuk praktisi
-
-FOR POLICY:
-- Insight kebijakan dari peta bukti
-- Gap yang relevan dengan agenda kebijakan
-- Stakeholder yang perlu dilibatkan
-
-=== TUGAS 7: LIMITATIONS SELF-AUDIT ===
-
-Kategorisasi limitations ScR (untuk Modul 9 Discussion):
-
-REVIEW-LEVEL LIMITATIONS:
-- Database coverage (peer-reviewed breadth, grey lit breadth)
-- Geographic/language bias (dari L1 descriptive)
-- Timeframe (dari Modul 2 L4)
-- Grey lit inaccessibility (Modul 6 L3)
-
-SOURCE-LEVEL LIMITATIONS:
-- Reporting quality (NR fields prevalence)
-- Heterogeneity in operationalization (membuat kategorisasi challenging)
-- Potential publication bias (untuk peer-reviewed portion)
-
-MAPPING-LEVEL LIMITATIONS:
-- Subjectivity in thematic categorization
-- Iterative charting means kategori awal mungkin berbeda dari final
-- ScR tidak dapat menarik kesimpulan kausal atau effect
-
-ScR-SPECIFIC DISCLAIMERS:
-- "This scoping review maps the evidence but does not assess effectiveness"
-- "Quality of included sources varied and was reported descriptively, not used
-  for exclusion (per JBI guidelines)"
-- "No meta-analysis was conducted as ScR methodology focuses on mapping, not
-  pooling"
-
-Setiap limitation + mitigation / implikasi untuk generalisasi mapping.
-
-Output: package lengkap siap feed ke Modul 9 Results + Discussion + Future Research.
+Output ringkas + path file.
+No preamble.
 ```
 
 ---
 
 ## **HASIL AKHIR**
 
-### **Collating + Summarizing + Reporting Package ScR (v1):**
 ```
-=== ANALYSIS + MAPPING RESULTS (ScR) ===
+=== MAPPING + SYNTHESIS PACKAGE (ScR) ===
 
-DESCRIPTIVE NUMERICAL SUMMARY (→ Modul 9 Results):
-- Sources analyzed: [N] (peer: [X], grey: [Y])
-- Document type breakdown: [...]
-- Temporal distribution: [...] (trend: growing/declining/stable)
-- Geographic distribution: [...] (includes potential bias disclosure)
-- Study design / Document type breakdown: [...]
-- Sample size statistics (jika applicable): [...]
-- PCC component distribution:
-  · P: [breakdown]
-  · C (Concept): [breakdown]
-  · C (Context): [breakdown]
-- Quality distribution (jika QA dilakukan): [HIGH/MODERATE/LOW, descriptive only]
+DESCRIPTIVE SUMMARY (outputs/descriptive_summary.md):
+- Total sources: [N] (peer: X, grey: Y)
+- Temporal: [trend]
+- Geographic: [breakdown + bias disclosure jika ada]
+- Document type / PCC components: [breakdown]
+- QA distribution: [jika ada]
 
-VISUAL SUMMARY:
-- Figures planned: [list 5-7 figur]
-  · Figure 1: PRISMA-ScR flow diagram
-  · Figure 2: Temporal trend
-  · Figure 3: Geographic distribution
-  · Figure 4: PCC component mapping
-  · Figure 5: EGM (evidence gap map) — hero figure
-  · [dst]
+THEMATIC MAPPING (outputs/thematic_mapping.md):
+- Categorical analysis per kolom kunci
+- Thematic synthesis per RQ (primary + 3 secondary)
+- Cross-tabulation Concept × Context
 
-THEMATIC / CATEGORICAL MAPPING (→ Modul 9 Results):
-- Categorical analysis per key column:
-  · Concept Operationalization: [kategori + frekuensi]
-  · Context Details: [kategori + frekuensi]
-  · Methodology: [kategori + frekuensi]
-  · Key findings (tematik): [kategori + frekuensi]
-- Thematic synthesis per RQ (narrative ready-Results)
-- Cross-tabulation matrix: [Concept × Context, dll.]
+EVIDENCE GAP MAP:
+- Hero figure: outputs/figures/fig3_egm.png
+- Naratif description: di thematic_mapping.md
 
-EVIDENCE GAP MAP (→ Modul 9 Results hero figure):
-- EGM structure: [2D matrix / bubble / table-based]
-- EGM axes: [X axis + Y axis]
-- Dense cells (well-mapped): [list]
-- Gap cells (n=0 atau sparse): [list]
-- Optional 3rd dim (quality): [encoding]
-- EGM narrative description (ready-Results)
+GAP INVENTORY (outputs/gap_inventory.md):
+- Kuantitatif / Kualitatif / Metodologis / Temporal
+- 3-5 priority gaps untuk Future Research Agenda
 
-GAP INVENTORY:
-- Kuantitatif: [list gap with priority]
-- Kualitatif/konseptual: [list]
-- Metodologis: [list]
-- Temporal: [list]
+INTERPRETATION PACKAGE (outputs/interpretation_package.md):
+- Answers to RQs (descriptive)
+- 3-5 key findings (mapping-grounded, not causal)
+- Conceptual clarifications
+- Surprising patterns
+- Gap-driven future research (3 HIGH + 2 MEDIUM + 1 LONG-TERM)
+- Triple-track implications (research/practice/policy)
+- Limitations self-audit + ScR disclaimers
 
-INTERPRETATION PACKAGE (→ Modul 9):
-- Answers to RQs (ScR style, descriptive/mapping)
-- Key findings (3-5 headline messages, ScR-appropriate)
-- Surprising mapping patterns
-- Conceptual clarifications (jika Tipe Gap B)
-- Gap-driven future research agenda (priority areas)
-- Implications for research/practice/policy (triple-track)
-- Limitations self-audit (3-tier: review/source/mapping + ScR-specific disclaimers)
+FIGURES (outputs/figures/) — semua dual-format SVG + PNG:
+- fig1_prisma_scr_flow.svg + .png (dari Modul 6)
+- fig2_temporal.svg + .png
+- fig3_egm.svg + .png (HERO FIGURE)
+- fig4_doctype.svg + .png
+- fig5_pcc.svg + .png
+- fig6_crosstab.svg + .png
 
-FORWARD ARTIFACTS (→ Modul 9):
-- Framework charting (akan jadi struktur Results)
-- Mapping approach (descriptive/thematic/EGM/hybrid)
-- Geographic bias disclosure (akan jadi Discussion paragraph)
-- Gap inventory (akan jadi Future Research agenda + Discussion)
-- PRISMA-ScR compliance checklist items ready
+Format guideline:
+- SVG: untuk submission jurnal (scalable vector, tidak pecah saat di-resize)
+  + embed di GitBook
+- PNG: untuk slide presentasi, preview, manuscript draft (DPI 300)
+
+NEXT: Manuscript Writing (Modul 9) — semua artifacts di outputs/
+siap di-feed ke writing prompts.
 ```
 
 ---
 
 ## **TROUBLESHOOTING**
 
-**Problem 1: Categorical analysis menghasilkan terlalu banyak kategori (>20)**
-- Lakukan second-level clustering: group kategori serupa
-- Contoh: 20 operationalizations → 5 meta-categories
-- Gunakan Claude untuk suggest clustering, lalu human-review
+**1. Categorical analysis menghasilkan terlalu banyak kategori (>20)**
+- Minta cowork: "second-level clustering ke 5-7 meta-categories"
 - Laporkan both levels (detail + meta) di Results
+- Sangat fragmented = temuan penting (gap konseptual)
 
-**Problem 2: Kategori yang muncul terlalu sedikit (mayoritas n<3)**
-- Sinyal bahwa literatur sangat fragmented (justru temuan penting)
-- Laporkan heterogeneity in operationalization sebagai finding
-- Gabungkan micro-kategori ke meta-category untuk visualisasi
-- Diskusikan fragmentasi di Discussion sebagai gap konseptual
+**2. EGM terlihat "kosong" (banyak cell n=0)**
+- NORMAL untuk ScR — gap visualization adalah tujuan
+- Jangan paksa isi cell dengan source marjinal
+- Laporkan sparse cells sebagai gap eksplisit
 
-**Problem 3: EGM terlihat "kosong" (banyak cell n=0)**
-- Ini NORMAL untuk ScR — gap visualization adalah tujuan
-- Jangan paksa isi cell dengan sumber yang marjinal
-- Laporkan sparse cells sebagai gap explicit dalam narrative
-- Beberapa gap = opportunity, terlalu banyak gap = mungkin need to broaden Concept/Context
+**3. Godaan claim kausal/effect — JANGAN**
+- ScR DESCRIBES, bukan EVALUATES
+- Self-audit: minta cowork "scan output untuk frasa effect/causal/significant"
+- Trigger words yang HARUS diganti: "pooled", "significant effect", "causes",
+  "leads to" → ganti dengan "described", "reported", "characterized", "mapped"
 
-**Problem 4: Godaan menarik kesimpulan kausal / effect size — JANGAN**
-- ScR TIDAK menarik kesimpulan kausal, effect size, atau inferential
-- Self-audit dengan Claude: "periksa apakah ada claim effect/kausal di draft ini"
-- Trigger words yang HARUS diganti: "pooled", "significant effect", "causes", "leads to"
-- Alternatif: "described", "reported", "characterized", "mapped"
+**4. Cowork tidak bisa generate visualisasi langsung**
+- Minta output script Python (.py) atau R (.R) ke outputs/figures/
+- Pastikan script include dual-export SVG + PNG:
+  ```python
+  plt.savefig('fig.svg', bbox_inches='tight')
+  plt.savefig('fig.png', dpi=300, bbox_inches='tight')
+  ```
+  ```r
+  ggsave('fig.svg', plot, width=10, height=6)
+  ggsave('fig.png', plot, width=10, height=6, dpi=300)
+  ```
+- Peserta jalankan sendiri
+- Atau gunakan Excel chart (less professional — Excel tidak support SVG native)
 
-**Problem 5: Grey lit heterogeneity sangat tinggi — sulit dikategorisasikan**
-- Terima heterogeneity sebagai karakteristik ScR multi-source
-- Buat kategori terpisah untuk grey lit jika struktur sangat berbeda
-- Alternatif: sub-analysis terpisah untuk peer-only vs mixed
-- Laporkan transparan di Results
-
-**Problem 6: Gap yang teridentifikasi terlalu banyak — prioritisasi?**
-- Kriteria prioritisasi: (a) signifikansi teoritis, (b) kebutuhan praktik, (c) feasibility
-- Pilih 3-5 priority gap untuk ditonjolkan; sisanya tetap dilaporkan di Appendix
-- Konsultasi supervisor untuk validasi prioritisasi
-
-**Problem 7: Reviewer/supervisor minta meta-analysis atau pooled estimate**
-- Tegaskan: ini ScR, bukan SLR — meta-analysis bukan bagian dari methodology
-- Rujuk JBI Manual Ch.11 + Munn et al. (2018) tentang perbedaan ScR vs SLR
-- Jika subset homogen ada: pertimbangkan follow-up mini-SLR sebagai output terpisah
-
-**Problem 8: Ragu apakah EGM atau thematic mapping yang lebih informatif**
-- Hybrid approach (keduanya) adalah rekomendasi default untuk ScR berkualitas
-- EGM untuk visualisasi gap/density
-- Thematic mapping untuk kedalaman narrative
-- Keduanya saling melengkapi — EGM memberikan overview, thematic memberikan depth
-
----
+**5. Reviewer/supervisor minta meta-analysis atau pooled estimate**
+- Tegaskan: ini ScR, bukan SLR
+- Rujuk JBI Manual Ch.11 + Munn et al. (2018) + PRISMA-ScR item 13
+- Jika subset homogen dapat di-meta: pertimbangkan **mini-SLR follow-up**
+  sebagai output terpisah, BUKAN gabung ke ScR ini
