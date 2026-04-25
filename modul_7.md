@@ -106,81 +106,67 @@ No preamble.
 
 ---
 
-## **LANGKAH 2: PILOT CHARTING (5-10 SUMBER)**
+## **LANGKAH 2: ITERATIVE CHARTING (PILOT → REFINE → FULL)**
 
-### **Prompt Cowork:**
+### **Prompt Cowork (single prompt, 3 fase otomatis):**
 
 ```
-Pilot charting dengan 5-10 sumber sample.
+Lakukan iterative charting end-to-end dalam satu sesi.
 
+=== FASE 1: PILOT (5-10 SUMBER) ===
 1. Pilih 5-10 sources dari charting.xlsx (mix peer + grey, mix document types)
-2. Untuk setiap source, baca PDF dari pdfs/, chart sesuai charting_form.md
+2. Untuk setiap source: baca PDF dari pdfs/, chart sesuai charting_form.md
 3. Aturan charting:
    - Evidence-backed: kutip section reference untuk tiap field
    - [NOT REPORTED] jika info tidak ada (jangan mengira)
    - Konsisten dengan canonical terminology di pcc_definitions.md
    - [AMBIGUOUS: alasan] untuk field borderline
-4. Isi langsung di Sheet "Charting" charting.xlsx
-5. Output PILOT OBSERVATIONS:
+4. Isi langsung Sheet "Charting" charting.xlsx
+5. Generate PILOT OBSERVATIONS:
    - Kolom mana yang sulit diisi / sering NR?
-   - Kolom mana yang redundant atau overlap?
-   - Ada info penting yang DISEBUT di sumber tapi TIDAK ADA kolomnya?
+   - Kolom mana yang redundant / overlap?
+   - Ada info penting di sumber yang TIDAK ADA kolomnya?
    - Apakah grey lit butuh kolom berbeda dari peer?
 
-No preamble.
-```
+=== FASE 2: REFINE FORM (CONDITIONAL) ===
+Berdasarkan pilot observations:
+- Jika perlu revisi: update charting_form.md + Sheet "Charting" charting.xlsx
+  (tambah/hapus/rephrase kolom) + log ke Sheet "Pilot_Log"
+  (Iterasi | Tanggal | Perubahan | Alasan)
+- Jika pilot sudah OK: skip refine, catat di Pilot_Log "v1 final, no revisions"
 
-> **💡 Iterative refinement** adalah prinsip Levac et al. Pilot observations dari Langkah 2 akan langsung dipakai untuk refine form + full charting di Langkah 3.
-
----
-
-## **LANGKAH 3: REFINE FORM + FULL CHARTING (BATCH)**
-
-### **Prompt Cowork:**
-
-```
-Berdasarkan pilot observations dari L2:
-
-BAGIAN A — REFINE FORM (jika perlu revisi):
-1. SARAN REVISI charting form (tambah/hapus/rephrase kolom)
-2. Update charting_form.md dengan revisi
-3. Update Sheet "Charting" charting.xlsx (tambah/hapus kolom sesuai)
-4. Log perubahan ke Sheet "Pilot_Log":
-   Iterasi | Tanggal | Perubahan | Alasan
-
-(Jika pilot sudah OK tanpa revisi: skip A, langsung ke B + catat di Pilot_Log
-"v1 final, no revisions needed".)
-
-BAGIAN B — FULL CHARTING SISA SOURCES:
-1. Chart sisa sources di charting.xlsx yang belum terisi
+=== FASE 3: FULL CHARTING SISA SOURCES ===
+1. Chart sisa sources di charting.xlsx yang belum terisi (form versi final)
 2. Batch 5-10 sumber sekaligus, baca PDF dari pdfs/
-3. Aturan: evidence-backed, [NOT REPORTED] jujur, canonical terms dari
-   pcc_definitions.md, [AMBIGUOUS: alasan] untuk borderline
-4. Isi langsung Sheet "Charting" charting.xlsx
-5. Output ringkas per batch:
-   - Jumlah sources di-chart
-   - NR rate per kolom (untuk monitoring)
-   - Daftar [AMBIGUOUS] yang butuh review manual
+3. Aturan sama Fase 1
+4. Isi langsung Sheet "Charting"
+
+OUTPUT FINAL (di akhir, ringkas):
+- Pilot: [N] sources, [list pilot observations 3-4 poin]
+- Refinement: [list revisi atau "no revisions needed"]
+- Full charting: [N total sources di-chart]
+- NR rate per kolom (untuk monitoring)
+- Daftar [AMBIGUOUS] yang butuh review manual
 
 No preamble.
 ```
 
-> **💡 Manfaat penggabungan:** Refine form + langsung apply ke sisa sources dalam satu sesi cowork. Tidak ada break antara perbaikan dan eksekusi — hemat token + workflow lebih natural.
+> **💡 Iterative refinement** adalah prinsip Levac et al. Single prompt untuk seluruh siklus pilot → refine → full charting — cowork eksekusi 3 fase berurutan tanpa break sesi.
 
 ### **Verifikasi Manual (Spot-Check 20%):**
 
-Peserta:
+Peserta (setelah cowork selesai L2):
 1. Pilih random 20% sources yang sudah di-chart
 2. Buka PDF + bandingkan dengan baris di charting.xlsx
 3. Cek akurasi 3 kolom kritis: Concept Operationalization, Context, Key Findings
-4. Jika disagreement >20%: kembali ke L2 (pilot ulang dengan form revised)
-5. Jika <20%: PROCEED
+4. Jika disagreement >20%: re-run L2 (form revised, ulang fase 1-3)
+5. Jika <20%: PROCEED ke L3
 
 ---
 
-## **LANGKAH 4: OPTIONAL QUALITY APPRAISAL (DESKRIPTIF, NON-EXCLUSIONARY)**
+## **LANGKAH 3: OPTIONAL QUALITY APPRAISAL (DESKRIPTIF, NON-EXCLUSIONARY)**
 
-### **4.1 Keputusan: Lakukan QA atau Tidak?**
+### **3.1 Keputusan: Lakukan QA atau Tidak?**
 
 ```
 Tolong rekomendasikan: apakah QA opsional perlu dilakukan untuk ScR saya?
@@ -202,7 +188,7 @@ KAPAN QA TIDAK PERLU:
 Output: REKOMENDASI YES/NO + 2-3 kalimat justifikasi (siap-paste ke Methods).
 ```
 
-### **4.2 Jika YES — Eksekusi QA via Cowork:**
+### **3.2 Jika YES — Eksekusi QA via Cowork:**
 
 ```
 Lakukan QA non-exclusionary untuk semua sources di charting.xlsx.
@@ -226,7 +212,7 @@ Output ringkas: distribusi quality (HIGH/MODERATE/LOW counts) + breakdown
 peer vs grey.
 ```
 
-### **4.3 Jika NO — Dokumentasikan Justifikasi:**
+### **3.3 Jika NO — Dokumentasikan Justifikasi:**
 
 ```
 Generate paragraf 2-3 kalimat untuk Methods section, menjelaskan mengapa
@@ -236,14 +222,16 @@ untuk ScR). Simpan sebagai qa_justification.md di folder kerja.
 
 ---
 
-## **LANGKAH 5: MAPPING PREPARATION (BRIDGE KE MODUL 8)**
+## **LANGKAH 4: MAPPING PREPARATION + FINAL SUMMARY (BRIDGE KE MODUL 8)**
 
-### **Prompt Cowork:**
+### **Prompt Cowork (single prompt — generate dua output sekaligus):**
 
 ```
-Generate mapping preparation summary dari charting.xlsx.
+Generate dua file output dari charting.xlsx:
 
-Output ringkas (tabel + bullet, no narasi panjang):
+=== OUTPUT 1: mapping_prep.md (BRIDGE KE MODUL 8) ===
+
+Tulis ke outputs/mapping_prep.md (jika folder outputs/ belum ada, buat dulu):
 
 1. DESCRIPTIVE SUMMARY:
    - Total sources charted (peer/grey breakdown)
@@ -272,31 +260,24 @@ Output ringkas (tabel + bullet, no narasi panjang):
    - Descriptive only / Thematic / Evidence Gap Map / Hybrid
    - Justifikasi singkat
 
-Simpan output sebagai mapping_prep.md di folder kerja.
-No preamble.
-```
+=== OUTPUT 2: modul7_summary.md (HASIL AKHIR MODUL 7) ===
 
----
+Tulis ke outputs/modul7_summary.md format:
 
-## **HASIL AKHIR**
-
-```
 === CHARTING + (OPTIONAL) QA SUMMARY (ScR) ===
 
-CHARTING FRAMEWORK: [JBI standard / PCC-driven / Thematic / Policy / Custom]
+CHARTING FRAMEWORK: [dari L1]
 Justifikasi: [3-4 kalimat untuk Methods]
 
-PILOT ITERATION:
-- Sample size: [N]
-- Revisions made: [list dari Sheet Pilot_Log]
+ITERATIVE CHARTING (L2):
+- Pilot sample size: [N]
+- Revisions made: [list dari Sheet Pilot_Log atau "no revisions"]
 - Final form version: v[X]
-
-CHARTING EXECUTION:
 - Total sources charted: [N] (peer: X, grey: Y)
 - NR rate per kolom: [breakdown]
 - Spot-check disagreement rate: [<20% / >20%]
 
-OPTIONAL QA: [YES / NO]
+OPTIONAL QA (L3): [YES / NO]
 Jika YES:
 - Tool: [MMAT / AACODS / multi-tool]
 - Distribusi: HIGH [N], MODERATE [N], LOW [N]
@@ -304,19 +285,26 @@ Jika YES:
 Jika NO:
 - Justifikasi (2-3 kalimat) di qa_justification.md
 
-DESCRIPTIVE OVERVIEW: [tabel ringkas]
-CATEGORICAL ANALYSIS: [kategori + frekuensi per kolom kunci]
-PRELIMINARY GAP INVENTORY: [4 jenis gap]
-RECOMMENDED MAPPING APPROACH: [verdict + justifikasi]
+MAPPING PREP HIGHLIGHTS (dari Output 1):
+- Descriptive overview: [tabel ringkas 3-4 baris]
+- Top categorical findings: [3-5 kategori dominan]
+- Preliminary gaps: [4 jenis gap, 1 contoh per jenis]
+- Recommended mapping approach: [verdict + 1 kalimat justifikasi]
 
 FORWARD ARTIFACTS (→ Modul 8):
 - charting.xlsx (lengkap dengan QA jika ada)
 - charting_form.md (versi final)
-- mapping_prep.md (input untuk Modul 8)
-- qa_justification.md (jika QA tidak dilakukan)
+- outputs/mapping_prep.md (input utama Modul 8)
+- outputs/qa_justification.md (jika QA tidak dilakukan)
 
 NEXT: Mapping + EGM (Modul 8) — gunakan folder kerja sama.
+
+=== KONFIRMASI ===
+Konfirmasi kedua file sudah tersimpan + path absolutnya.
+No preamble.
 ```
+
+> **💡 Manfaat penggabungan:** Single prompt menghasilkan 2 file output (mapping_prep.md untuk Modul 8 + modul7_summary.md sebagai checkpoint). Hemat token + 1 sesi cowork untuk semua wrap-up.
 
 ---
 
