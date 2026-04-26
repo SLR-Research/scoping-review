@@ -10,23 +10,9 @@
 
 ## **LANGKAH 0: PERLUASAN FOLDER KERJA (LANJUTAN MODUL 6)**
 
-### **0.1 Tambahan Struktur Folder:**
-
-```
-ScR_Project/                       ← folder yang sama dari Modul 6
-├── pdfs/                          ← PDF dari Modul 6 (sudah ada)
-├── screening.xlsx                  ← dari Modul 6
-├── pcc_definitions.md              ← dari Modul 6
-├── reason_codes.md                 ← dari Modul 6
-├── briefing.md                     ← dari Modul 6
-├── charting_form.md                ← BARU — definisi kolom charting
-├── charting.xlsx                   ← BARU — data charted
-└── pilot_log.md                    ← BARU — log iterasi form (jika revisi)
-```
-
 > **📁 Catatan:** Jika di Modul 6 Anda pakai nama folder selain `ScR_Project/`, gunakan nama yang sama di Modul 7 — konsistensi lintas modul wajib.
 
-### **0.2 Setup Tambahan + Brief Awal (Single Prompt Cowork):**
+### **Prompt Cowork (single prompt — setup file baru + brief context):**
 
 ```
 Lanjut Modul 7 (Data Charting) di folder kerja saya [ScR_Project/ atau nama
@@ -34,7 +20,20 @@ folder Anda dari Modul 6]. Eksekusi dua hal sekaligus:
 
 === BAGIAN A: SETUP FILE TAMBAHAN ===
 
-1. CREATE charting_form.md (kosong, akan diisi di L1)
+Target struktur akhir:
+
+ScR_Project/                       ← folder yang sama dari Modul 6
+├── pdfs/                          ← (dari M6)
+├── screening.xlsx                  ← (dari M6)
+├── pcc_definitions.md              ← (dari M6)
+├── reason_codes.md                 ← (dari M6)
+├── briefing.md                     ← (dari M6)
+├── charting_form.md                ← BARU — definisi kolom charting
+├── charting.xlsx                   ← BARU — data charted
+└── pilot_log.md                    ← BARU — log iterasi form (jika revisi)
+
+Steps:
+1. CREATE charting_form.md (kosong, diisi di L1)
 
 2. CREATE charting.xlsx dengan struktur:
    - Sheet "Charting": Row 1-5 header meta (Framework + canonical PCC + tanggal),

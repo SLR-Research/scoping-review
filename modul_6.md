@@ -8,20 +8,9 @@
 
 ## **LANGKAH 0: SETUP CLAUDE COWORK (SEKALI DI AWAL)**
 
-### **0.1 Struktur Folder Target:**
+> **📁 Catatan Nama Folder:** `ScR_Project/` hanya **contoh**. Peserta bebas menggunakan nama folder lain (mis. `MyScR_GenAI_Education/`, `[NamaTopik]_ScR/`) — penting konsisten di seluruh modul. Jika sudah punya folder existing (OneDrive/Google Drive), bisa pakai itu dan sesuaikan placeholder di prompt.
 
-```
-ScR_Project/
-├── pdfs/                    ← semua full-text PDF (kosong dulu, diisi di L1)
-├── screening.xlsx            ← spreadsheet dari Modul 4 L3
-├── pcc_definitions.md        ← PCC + WHAT COUNTS/DOESN'T (Modul 2 L3)
-├── reason_codes.md           ← 10 reason codes ScR (Modul 4 L3)
-└── briefing.md               ← screener briefing (Modul 5 L1)
-```
-
-> **📁 Catatan Nama Folder:** `ScR_Project/` hanya **contoh**. Peserta bebas menggunakan nama folder lain yang sesuai dengan project — mis. `MyScR_GenAI_Education/`, `Tinjauan_Lingkup_2026/`, `[NamaTopik]_ScR/`. Penting: konsisten gunakan nama yang sama di semua prompt cowork sepanjang modul. Jika peserta sudah punya folder kerja existing (mis. di OneDrive/Google Drive), bisa pakai folder tsb — cukup ganti `ScR_Project/` di prompt-prompt berikutnya dengan nama folder peserta.
-
-### **0.2 Setup Folder + Brief Awal (Single Prompt Cowork):**
+### **Prompt Cowork (single prompt — setup folder + brief context):**
 
 ```
 Setup folder kerja Scoping Review + brief context untuk Modul 6 (full-text
@@ -29,15 +18,20 @@ screening). Eksekusi dua hal sekaligus:
 
 === BAGIAN A: SETUP STRUKTUR FOLDER ===
 
-1. CREATE folder utama: ScR_Project/ di [path target, mis. ~/Documents/]
-   - Gunakan mkdir/filesystem create. Jika folder sudah ada, konfirmasi
-     dulu sebelum overwrite.
+Target struktur akhir:
 
-2. CREATE sub-folder kosong: ScR_Project/pdfs/
+ScR_Project/
+├── pdfs/                    ← sub-folder kosong (diisi PDF di L1)
+├── screening.xlsx            ← dari Modul 4 L3
+├── pcc_definitions.md        ← PCC + WHAT COUNTS/DOESN'T (Modul 2 L3)
+├── reason_codes.md           ← 10 reason codes ScR (Modul 4 L3)
+└── briefing.md               ← screener briefing (Modul 5 L1)
 
-3. MOVE file: pindahkan screening.xlsx dari [path asal] ke
-   ScR_Project/screening.xlsx
-
+Steps:
+1. CREATE folder utama ScR_Project/ di [path, mis. ~/Documents/]
+   (mkdir; jika sudah ada, konfirmasi dulu sebelum overwrite)
+2. CREATE sub-folder kosong ScR_Project/pdfs/
+3. MOVE screening.xlsx dari [path asal] ke ScR_Project/screening.xlsx
 4. CREATE 3 file rujukan di ScR_Project/ dengan isi yang saya paste:
 
    File 1: pcc_definitions.md
@@ -56,7 +50,7 @@ screening). Eksekusi dua hal sekaligus:
    "when in doubt, INCLUDE"]
    ---
 
-5. VERIFY struktur akhir (ls/dir ScR_Project/), konfirmasi sesuai 0.1.
+5. VERIFY struktur akhir (ls/dir ScR_Project/) sesuai diagram di atas.
 
 === BAGIAN B: BRIEF AWAL CONTEXT ===
 
@@ -78,7 +72,7 @@ No preamble.
 
 > **💡 Alternatif:** Jika file-file sudah ada terpisah, cukup minta cowork **konsolidasi** ke `ScR_Project/` dengan menyebut path masing-masing file di Bagian A.
 
-> **💡 Manfaat single prompt:** Cowork buat folder + simpan context dalam 1 sesi. Tidak perlu 2 round-trip prompt — peserta langsung bisa lanjut ke L1 setelah konfirmasi.
+> **💡 Manfaat single prompt:** Cowork buat folder + simpan context dalam 1 sesi. Peserta langsung lanjut ke L1 setelah konfirmasi.
 
 ---
 

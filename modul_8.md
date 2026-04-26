@@ -10,9 +10,18 @@
 
 ## **LANGKAH 0: PERLUASAN FOLDER KERJA (LANJUTAN MODUL 7)**
 
-### **0.1 Tambahan Struktur Folder:**
+> **📁 Catatan:** Jika nama folder kerja Anda bukan `ScR_Project/`, gunakan nama yang sama dari Modul 6-7.
+
+### **Prompt Cowork (single prompt — setup outputs/ + brief context):**
 
 ```
+Lanjut Modul 8 (Mapping + EGM) di folder kerja saya [nama folder dari M7].
+Eksekusi dua hal sekaligus:
+
+=== BAGIAN A: SETUP STRUKTUR OUTPUT ===
+
+Target struktur akhir:
+
 ScR_Project/                       ← folder yang sama dari Modul 6-7
 ├── pdfs/                          ← (dari M6)
 ├── screening.xlsx                  ← (dari M6)
@@ -25,23 +34,13 @@ ScR_Project/                       ← folder yang sama dari Modul 6-7
 │   ├── thematic_mapping.md
 │   ├── gap_inventory.md
 │   ├── interpretation_package.md
-│   └── figures/                    ← BARU — semua chart/figure (SVG + PNG)
+│   └── figures/                    ← BARU — chart/figure (SVG + PNG)
 │       ├── fig2_temporal.svg + .png
 │       ├── fig3_egm.svg + .png   ← hero figure
 │       ├── fig4_geographic.svg + .png
 │       └── ...
-```
 
-> **📁 Catatan:** Jika nama folder kerja Anda bukan `ScR_Project/`, gunakan nama yang sama dari Modul 6-7.
-
-### **0.2 Setup Tambahan + Brief Awal (Single Prompt Cowork):**
-
-```
-Lanjut Modul 8 (Mapping + EGM) di folder kerja saya [nama folder dari M7].
-Eksekusi dua hal sekaligus:
-
-=== BAGIAN A: SETUP STRUKTUR OUTPUT ===
-
+Steps:
 1. CREATE folder outputs/ di dalam folder kerja
 2. CREATE sub-folder outputs/figures/
 3. VERIFY charting.xlsx tersedia (input utama Modul 8)

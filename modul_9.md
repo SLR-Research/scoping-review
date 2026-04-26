@@ -12,9 +12,18 @@
 
 ## **LANGKAH 0: SETUP + ATURAN GLOBAL**
 
-### **0.1 Perluasan Folder Kerja:**
+> **📁 Catatan:** Jika nama folder kerja Anda bukan `ScR_Project/`, gunakan nama yang sama dari Modul 6-8.
+
+### **Prompt Cowork (single prompt — setup + brief + aturan global):**
 
 ```
+Lanjut Modul 9 (Manuscript Writing) di folder kerja [nama folder dari M8].
+Eksekusi tiga hal sekaligus:
+
+=== BAGIAN A: SETUP STRUKTUR OUTPUT ===
+
+Target struktur akhir:
+
 ScR_Project/                       ← folder yang sama dari Modul 6-8
 ├── pdfs/                           ← (dari M6)
 ├── screening.xlsx                  ← (dari M6)
@@ -39,27 +48,15 @@ ScR_Project/                       ← folder yang sama dari Modul 6-8
 │   ├── manuscript_final.md         ← BARU — master compile
 │   ├── manuscript_final.docx       ← BARU — siap submit
 │   └── prisma_scr_checklist.md     ← BARU — supplementary
-```
 
-> **📁 Catatan:** Jika nama folder kerja Anda bukan `ScR_Project/`, gunakan nama yang sama dari Modul 6-8.
-
-### **0.2 Setup + Brief Awal + Aturan Global (Single Prompt Cowork):**
-
-```
-Lanjut Modul 9 (Manuscript Writing) di folder kerja [nama folder dari M8].
-Eksekusi tiga hal sekaligus:
-
-=== BAGIAN A: SETUP STRUKTUR OUTPUT ===
-
-1. CREATE outputs/manuscript/ (kosong, akan diisi per langkah L1-L9)
+Steps:
+1. CREATE outputs/manuscript/ (kosong, diisi per langkah L1-L9)
 2. VERIFY input artifacts dari M2-8 tersedia:
    - outputs/interpretation_package.md (dari M8 — wajib)
-   - outputs/gap_inventory.md
-   - outputs/thematic_mapping.md
-   - outputs/descriptive_summary.md
+   - outputs/gap_inventory.md, outputs/thematic_mapping.md,
+     outputs/descriptive_summary.md
    - outputs/figures/ (semua SVG + PNG)
-   - charting.xlsx
-   - screening.xlsx (untuk PRISMA-ScR flow numbers)
+   - charting.xlsx, screening.xlsx (untuk PRISMA-ScR flow numbers)
 
 === BAGIAN B: BRIEF AWAL CONTEXT ===
 
