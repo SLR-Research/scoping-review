@@ -9,22 +9,22 @@ description: >-
 
 ## Pindah ke Platform Baru
 
-Mulai **April 2026**, panduan **Scoping Review (JBI Manual Ch.11 + PRISMA-ScR)**
+Mulai **26 April 2026**, panduan **Scoping Review (JBI Manual Ch.11 + PRISMA-ScR)**
 telah diintegrasikan ke platform pembelajaran terpadu:
 
 ### → [https://slr.rumahpublikasi.id](https://slr.rumahpublikasi.id)
 
 Platform baru menyediakan **3 track pembelajaran** dalam satu akun:
 
-| Track | Untuk Siapa |
-|---|---|
-| **SLR AI** | Workflow chat-based klasik — PICO + extraction + meta-analysis |
-| **SLR + AI Cowork** | File-based via Claude desktop — hemat token 40-50%, output `.docx` |
-| **Scoping Review** _(eks repo ini)_ | JBI + PRISMA-ScR + PCC + EGM (Evidence Gap Map) |
+| Track                               | Untuk Siapa                                                        |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| **SLR AI**                          | Workflow chat-based klasik — PICO + extraction + meta-analysis     |
+| **SLR + AI Cowork**                 | File-based via Claude desktop — hemat token 40-50%, output `.docx` |
+| **Scoping Review** _(eks repo ini)_ | JBI + PRISMA-ScR + PCC + EGM (Evidence Gap Map)                    |
 
-***
+---
 
-## Foundational References (tetap berlaku)
+## Foundational References
 
 1. Arksey, H., & O'Malley, L. (2005). Scoping studies: Towards a methodological
    framework. _International Journal of Social Research Methodology_, 8(1), 19–32.
@@ -39,6 +39,10 @@ Platform baru menyediakan **3 track pembelajaran** dalam satu akun:
    (PRISMA-ScR): Checklist and explanation. _Annals of Internal Medicine_,
    169(7), 467–473.
 
-***
+---
 
-_Made with care for Indonesian Research Excellence — Rumah Publikasi Indonesia_
+> _Pengetahuan bukan tentang seberapa banyak yang kita baca,
+> tetapi tentang bagaimana kita memahami, mensintesis,
+> dan membagikannya kepada dunia._
+>
+> — **Rumah Publikasi Indonesia** · [rumahpublikasi.id](https://rumahpublikasi.id)
